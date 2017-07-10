@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>305</x>
+      <y>225</y>
+      <w>185</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>ZTicketManager
+--
+
+--
++show_ticket(id: int): dictionary (JSON data)
++list_tickets(): dictionary (JSON data)
+--
+Responsibilities
+-- Main goal is to allow support for all operations
+on the Zendesk Ticket resource. 
+-- Supports showing single ticket details.
+-- Support showing list of tickets.
+-- Raises exceptions about Business level errors.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>165</x>
+      <y>265</y>
+      <w>115</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=blue
+The design here only fufils
+the necessary features of the 
+coding challenge but has been
+designed to be easily extended
+in future for extra features.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>455</x>
+      <y>25</y>
+      <w>185</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>ZRequestManager
+--
+-_auth: Tuple Holds authentication details.
+-_headers: Dictionary Request headers
+-_url: The base API url for any request.
+
+--
+#_get(url: String): dictionary (JSON data)
+-_check_api_status(): boolean
+--
+Responsibilities
+-- Handles any request with any HTTP method.
+-- Focused only on communicating directly with
+Zendesk API and the specific details of a request
+(eg. authentication, http headers etc.).
+-- Raises exceptions about API level errors and 
+any other low level errors (eg. connection timed out).
+--
+Note
+This class should ideally be instantiated through its 
+subclasses.
+However, future developers that might want to build
+interfaces around this specific class might want
+to instantiate this class alone which is allowed
+as a result.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>115</y>
+      <w>80</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>585</x>
+      <y>225</y>
+      <w>185</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>ZCommentManager
+--
+
+--
++list_comments(ticket_id: int): dictionary (JSON data)
+--
+Responsibilities
+-- Main goal is to allow support for all operations
+on the Zendesk Comment Resource.
+-- Raises exceptions about Business level errors.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>635</x>
+      <y>115</y>
+      <w>65</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0;110.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>380</y>
+      <w>185</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>HomesRUsTicketViewer
+--
++auth: Tuple holds authentication details
++headers: Dictionary Request headers
++url: The base API url for any request.
+--
++show_ticket(id: int): dictionary (JSON data)
++list_tickets(): dictionary (JSON data)
+--
+Responsibilities
+-- Focuses on showing list of tickets with relevant
+information that can be shown on the website/cli.
+-- Shows ticket details and associated comments.
+--
+Note
+This will be a module rather than a class because
+this is using the above package and does not need
+multiple instances and does not need to modify its 
+state during the lifespan of the server/client 
+connection.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>335</y>
+      <w>190</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>555</x>
+      <y>335</y>
+      <w>135</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>850</x>
+      <y>5</y>
+      <w>135</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>ZendeskErrors
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>60</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZAPIError
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>635</x>
+      <y>75</y>
+      <w>245</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>470.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>155</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZBusinessError
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>485</x>
+      <y>165</y>
+      <w>395</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>770.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>765</x>
+      <y>185</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>300.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>300</x>
+      <y>10</y>
+      <w>495</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>ZendeskWrapperAPI
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
