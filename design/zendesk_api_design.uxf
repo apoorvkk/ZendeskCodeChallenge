@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>305</x>
+      <x>315</x>
       <y>225</y>
       <w>185</w>
       <h>115</h>
@@ -21,15 +21,15 @@ Responsibilities
 on the Zendesk Ticket resource. 
 -- Supports showing single ticket details.
 -- Support showing list of tickets.
--- Raises exceptions about Business level errors.
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>165</x>
-      <y>265</y>
+      <x>170</x>
+      <y>10</y>
       <w>115</w>
       <h>55</h>
     </coordinates>
@@ -58,7 +58,6 @@ in future for extra features.</panel_attributes>
 
 --
 #_get(url: String): dictionary (JSON data)
--_check_api_status(): boolean
 --
 Responsibilities
 -- Handles any request with any HTTP method.
@@ -66,7 +65,7 @@ Responsibilities
 Zendesk API and the specific details of a request
 (eg. authentication, http headers etc.).
 -- Raises exceptions about API level errors and 
-any other low level errors (eg. connection timed out).
+any other low level errors.
 --
 Note
 This class should ideally be instantiated through its 
@@ -107,7 +106,7 @@ as a result.
 Responsibilities
 -- Main goal is to allow support for all operations
 on the Zendesk Comment Resource.
--- Raises exceptions about Business level errors.
+
 
 </panel_attributes>
     <additional_attributes/>
@@ -157,14 +156,14 @@ connection.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
+      <x>390</x>
       <y>335</y>
-      <w>190</w>
+      <w>180</w>
       <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>10.0;10.0;360.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;340.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -181,9 +180,9 @@ connection.
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>850</x>
-      <y>5</y>
-      <w>135</w>
+      <x>820</x>
+      <y>10</y>
+      <w>230</w>
       <h>345</h>
     </coordinates>
     <panel_attributes>ZendeskErrors
@@ -195,11 +194,11 @@ bg=orange</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>870</x>
-      <y>60</y>
+      <y>40</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
-    <panel_attributes>ZAPIError
+    <panel_attributes>ZAPIRequestException
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -207,19 +206,19 @@ bg=orange</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>635</x>
-      <y>75</y>
+      <y>60</y>
       <w>245</w>
-      <h>25</h>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>470.0;10.0;10.0;30.0</additional_attributes>
+    <additional_attributes>470.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>155</y>
+      <x>830</x>
+      <y>175</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -230,26 +229,14 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>485</x>
-      <y>165</y>
-      <w>395</w>
-      <h>85</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-</panel_attributes>
-    <additional_attributes>770.0;10.0;10.0;150.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>765</x>
-      <y>185</y>
-      <w>160</w>
+      <x>635</x>
+      <y>90</y>
+      <w>205</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>300.0;10.0;10.0;200.0</additional_attributes>
+    <additional_attributes>390.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
@@ -263,5 +250,75 @@ bg=orange</panel_attributes>
 --
 bg=orange</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>105</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZAPIServerException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>105</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZAPIClientException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>50</y>
+      <w>35</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>845</x>
+      <y>50</y>
+      <w>35</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>635</x>
+      <y>90</y>
+      <w>205</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>390.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>635</x>
+      <y>90</y>
+      <w>370</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>720.0;100.0;720.0;140.0;350.0;140.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
