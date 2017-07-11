@@ -29,5 +29,5 @@ class ZUnprocessableResponseException(Exception):
     """
     Used when the received response from Zendesk cannot be processed/converted into the relevant data format (eg. JSON).
     """
-    
+
     pass
