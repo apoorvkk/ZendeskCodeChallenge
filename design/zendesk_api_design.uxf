@@ -4,17 +4,17 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>225</y>
-      <w>185</w>
+      <x>230</x>
+      <y>240</y>
+      <w>245</w>
       <h>115</h>
     </coordinates>
     <panel_attributes>ZTicketManager
 --
 
 --
-+show_ticket(id: int): dictionary (JSON data)
-+list_tickets(): dictionary (JSON data)
++show_ticket(id: int, query_params: dictionary): dictionary (JSON data)
++list_tickets(query_params: dictionary): dictionary (JSON data)
 --
 Responsibilities
 -- Main goal is to allow support for all operations
@@ -28,8 +28,8 @@ on the Zendesk Ticket resource.
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>170</x>
-      <y>10</y>
+      <x>65</x>
+      <y>30</y>
       <w>115</w>
       <h>55</h>
     </coordinates>
@@ -45,9 +45,9 @@ in future for extra features.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>455</x>
-      <y>25</y>
-      <w>185</w>
+      <x>395</x>
+      <y>40</y>
+      <w>285</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>ZRequestManager
@@ -57,7 +57,8 @@ in future for extra features.</panel_attributes>
 -_url: The base API url for any request.
 
 --
-#_get(url: String): dictionary (JSON data)
+#_get(url: String, query_params: dictionary): dictionary (JSON data)
+#_get_json_data(api_url: String, query_params: dictionary): dictionary (JSON data)
 --
 Responsibilities
 -- Handles any request with any HTTP method.
@@ -81,27 +82,27 @@ as a result.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>385</x>
-      <y>115</y>
-      <w>80</w>
-      <h>120</h>
+      <x>335</x>
+      <y>150</y>
+      <w>70</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>140.0;10.0;10.0;10.0;10.0;220.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0;10.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>585</x>
-      <y>225</y>
-      <w>185</w>
+      <x>510</x>
+      <y>240</y>
+      <w>275</w>
       <h>115</h>
     </coordinates>
     <panel_attributes>ZCommentManager
 --
 
 --
-+list_comments(ticket_id: int): dictionary (JSON data)
++list_comments(query_params: dictionary, ticket_id: int): dictionary (JSON data)
 --
 Responsibilities
 -- Main goal is to allow support for all operations
@@ -114,21 +115,21 @@ on the Zendesk Comment Resource.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>635</x>
-      <y>115</y>
-      <w>65</w>
-      <h>120</h>
+      <x>675</x>
+      <y>150</y>
+      <w>75</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;10.0;110.0;220.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
-      <y>380</y>
-      <w>185</w>
-      <h>125</h>
+      <x>390</x>
+      <y>415</y>
+      <w>195</w>
+      <h>155</h>
     </coordinates>
     <panel_attributes>HomesRUsTicketViewer
 --
@@ -137,12 +138,14 @@ on the Zendesk Comment Resource.
 +url: The base API url for any request.
 --
 +show_ticket(id: int): dictionary (JSON data)
-+list_tickets(): dictionary (JSON data)
++list_tickets(page_num: int): dictionary (JSON data)
++list_comments(page_num: int): dictionary (JSON data)
 --
 Responsibilities
 -- Focuses on showing list of tickets with relevant
 information that can be shown on the website/cli.
--- Shows ticket details and associated comments.
+-- Shows ticket details.
+-- Lists associated comments for a given ticket.
 --
 Note
 This will be a module rather than a class because
@@ -156,32 +159,32 @@ connection.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>335</y>
-      <w>180</w>
-      <h>55</h>
+      <x>335</x>
+      <y>350</y>
+      <w>155</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>10.0;10.0;340.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;290.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>555</x>
-      <y>335</y>
-      <w>135</w>
-      <h>55</h>
+      <x>475</x>
+      <y>350</y>
+      <w>190</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>250.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>360.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>820</x>
-      <y>10</y>
+      <x>825</x>
+      <y>25</y>
       <w>230</w>
       <h>345</h>
     </coordinates>
@@ -193,8 +196,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>40</y>
+      <x>875</x>
+      <y>55</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -205,45 +208,45 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>635</x>
-      <y>60</y>
-      <w>245</w>
+      <x>675</x>
+      <y>75</y>
+      <w>210</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>470.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>400.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>175</y>
-      <w>105</w>
+      <x>835</x>
+      <y>190</y>
+      <w>135</w>
       <h>35</h>
     </coordinates>
-    <panel_attributes>ZBusinessError
+    <panel_attributes>ZUnprocessableResponseException
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>635</x>
-      <y>90</y>
-      <w>205</w>
+      <x>675</x>
+      <y>105</y>
+      <w>170</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>390.0;200.0;10.0;10.0</additional_attributes>
+    <additional_attributes>320.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>300</x>
-      <y>10</y>
-      <w>495</w>
+      <x>195</x>
+      <y>25</y>
+      <w>605</w>
       <h>345</h>
     </coordinates>
     <panel_attributes>ZendeskWrapperAPI
@@ -254,8 +257,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>105</y>
+      <x>835</x>
+      <y>120</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -266,8 +269,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
-      <y>105</y>
+      <x>945</x>
+      <y>120</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -278,8 +281,8 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
-      <y>50</y>
+      <x>975</x>
+      <y>65</y>
       <w>35</w>
       <h>65</h>
     </coordinates>
@@ -289,8 +292,8 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>845</x>
-      <y>50</y>
+      <x>850</x>
+      <y>65</y>
       <w>35</w>
       <h>65</h>
     </coordinates>
@@ -300,25 +303,25 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>635</x>
-      <y>90</y>
-      <w>205</w>
+      <x>675</x>
+      <y>105</y>
+      <w>170</w>
       <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>390.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>320.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>635</x>
-      <y>90</y>
-      <w>370</w>
+      <x>675</x>
+      <y>105</y>
+      <w>335</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>720.0;100.0;720.0;140.0;350.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>650.0;100.0;650.0;140.0;280.0;140.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
