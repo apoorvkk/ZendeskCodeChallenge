@@ -36,7 +36,7 @@ class ZCoreRequestManager:
         """
 
         full_url = self._url + api_url
-        response = requests.get(full_url, auth=self._auth, headers=self._headers, query_params=query_params)
+        response = requests.get(full_url, auth=self._auth, headers=self._headers, params=query_params)
 
         response.raise_for_status()
 
@@ -57,17 +57,18 @@ class ZCoreRequestManager:
         """
 
         try:
-            response = self._get(api_url, query_params)
-        except requests.exceptions.RequestException as req_err:
-            raise exceptions.ZAPIRequestException("Unable to communicate with Zendesk's API.") from req_err
+            response = self._get(api_url=api_url, query_params=query_params)
         except requests.exceptions.HTTPError as http_err:
             if 500 <= http_err.response.status_code < 600:
                 raise exceptions.ZAPIServerException(
                     "{0}. Unable to communicate with Zendesk\'s API due to internal server errors.".format(
                         str(http_err))) from http_err
             elif 400 <= http_err.response.status_code < 500:
-                raise exceptions.ZAPIClientException(str(http_err) + ". Unable to proceed due to malformed requests") \
+
+                raise exceptions.ZAPIClientException(str(http_err.response.json())) \
                     from http_err
+        except requests.exceptions.RequestException as req_err:
+            raise exceptions.ZAPIRequestException("Unable to communicate with Zendesk's API.") from req_err
 
         try:
             json_response = response.json()
@@ -106,17 +107,18 @@ class ZTicketManager(ZCoreRequestManager):
         """
 
         api_url = "tickets/{id}.json".format(id=id)
-        return self._get_json_data(api_url, query_params)
+        return self._get_json_data(api_url=api_url, query_params=query_params)
 
-    def show_tickets(self, query_params):
+    def list_tickets(self, query_params=None):
         """
         This will bulk list all the tickets and their relevant details in the Zendesk API.
         :return: dict
         :param query_params: represents any query parameters that need to be used in the request (put in dictionary form).
         Note that if multiple values map to one key, use this format: {"key": "val1,val2,val3..."}.
         """
+
         api_url = "tickets.json"
-        return self._get_json_data(api_url, query_params)
+        return self._get_json_data(api_url=api_url, query_params=query_params)
 
 
 class ZCommentManager(ZCoreRequestManager):
@@ -148,4 +150,4 @@ class ZCommentManager(ZCoreRequestManager):
         """
 
         api_url = "tickets/{id}/comments.json".format(id=ticket_id)
-        return self._get_json_data(api_url, query_params)
+        return self._get_json_data(api_url=api_url, query_params=query_params)
