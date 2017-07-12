@@ -1,5 +1,7 @@
+import requests
 
-class ZAPIRequestException(Exception):
+
+class ZAPIRequestException(requests.exceptions.RequestException):
     """
     Represents a low level API exception. This could be due to connection time out, not using SSL etc.
     """
@@ -7,7 +9,7 @@ class ZAPIRequestException(Exception):
     pass
 
 
-class ZAPIServerException(ZAPIRequestException):
+class ZAPIServerException(requests.exceptions.HTTPError):
     """
     An internal server error happened. This might happen on Zendesk's side or on this side.
     This exception is usually thrown for the HTTP status codes 5XX.
@@ -16,7 +18,7 @@ class ZAPIServerException(ZAPIRequestException):
     pass
 
 
-class ZAPIClientException(ZAPIRequestException):
+class ZAPIClientException(requests.exceptions.HTTPError):
     """
     The client has provided malformed request data and as such, the Zendesk API potentially returns business/api level
     errors. This exception is usually thrown for the HTTP status codes 4XX.
