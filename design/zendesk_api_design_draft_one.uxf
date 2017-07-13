@@ -70,11 +70,10 @@ any other low level errors.
 --
 Note
 This class should ideally be instantiated through its 
-subclasses.
-However, future developers that might want to build
-interfaces around this specific class might want
-to instantiate this class alone which is allowed
-as a result.
+subclasses however, furture developers might want to 
+have more fine grained control over the api wrapper
+and make customizations. Thus, this class can be 
+instantiated for those cases.
 
 </panel_attributes>
     <additional_attributes/>
@@ -196,7 +195,7 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>875</x>
+      <x>880</x>
       <y>55</y>
       <w>105</w>
       <h>35</h>
@@ -210,18 +209,18 @@ bg=orange</panel_attributes>
     <coordinates>
       <x>675</x>
       <y>75</y>
-      <w>210</w>
+      <w>215</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>400.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>410.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>835</x>
-      <y>190</y>
+      <x>880</x>
+      <y>185</y>
       <w>135</w>
       <h>35</h>
     </coordinates>
@@ -234,12 +233,12 @@ bg=orange</panel_attributes>
     <coordinates>
       <x>675</x>
       <y>105</y>
-      <w>170</w>
-      <h>110</h>
+      <w>215</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>320.0;200.0;10.0;10.0</additional_attributes>
+    <additional_attributes>410.0;190.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
@@ -257,8 +256,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>835</x>
-      <y>120</y>
+      <x>880</x>
+      <y>100</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -269,8 +268,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>120</y>
+      <x>880</x>
+      <y>140</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -281,47 +280,25 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>975</x>
-      <y>65</y>
-      <w>35</w>
-      <h>65</h>
+      <x>675</x>
+      <y>100</y>
+      <w>215</w>
+      <h>20</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;50.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>850</x>
-      <y>65</y>
-      <w>35</w>
-      <h>65</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0;10.0;110.0</additional_attributes>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>410.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>675</x>
       <y>105</y>
-      <w>170</w>
-      <h>35</h>
+      <w>210</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
-    <additional_attributes>320.0;50.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>675</x>
-      <y>105</y>
-      <w>335</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-</panel_attributes>
-    <additional_attributes>650.0;100.0;650.0;140.0;280.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>400.0;100.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
