@@ -17,15 +17,14 @@ class ZCoreRequestManager:
     For the purpose of this project, we have only written code for making get requests.
     """
 
-    def __init__(self, subdomain="", username=None, password=None):
+    def __init__(self):
         """
         This constructor will store the relevant request metadata needed to make requests such as authentication
         details, headers and root domain.
-        :param subdomain: represents the Zendesk user domain
-        :param username: email of a Zendesk account
-        :param password: password of a Zendesk account
         """
 
+        from z_api import username, password, subdomain
+        # MAKE ASSERTION ABOUT USERNAME, PASSWORD AND SUBDOMAIN REQUIRED.
         self._auth = (username, password)
         self._headers = {'Accept': 'application/json'}
         self._url = "https://{subdomain}.zendesk.com/api/v2/".format(subdomain=subdomain)
@@ -47,7 +46,7 @@ class ZCoreRequestManager:
 
         return response
 
-    def _get_json_data(self, api_url="", query_params=None):
+    def get_json_data(self, api_url="", query_params=None):
         """
         This will make a GET request and return the JSON form of it.
         :return: dict

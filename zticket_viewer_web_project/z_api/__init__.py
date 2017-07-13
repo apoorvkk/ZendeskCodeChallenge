@@ -1,6 +1,11 @@
-from .ticket_manager import ZTicketManager
-from .comment_manager import ZCommentManager
-from .request_manager import ZCoreRequestManager
+username = None
+password = None
+subdomain = ""
+
+from .z_resources import (
+    ZComment,
+    ZTicket
+)
 from .exceptions import (
     ZAPIRequestException,
     ZAPIServerException,
