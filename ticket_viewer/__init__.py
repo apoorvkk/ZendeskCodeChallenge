@@ -3,6 +3,6 @@ password = None
 subdomain = ""
 
 
-from ticket_viewer.api import *
+from .api import *
 
 

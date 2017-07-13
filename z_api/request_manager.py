@@ -1,7 +1,12 @@
 from json import JSONDecodeError
+from .exceptions import (
+    ZAPIRequestException,
+    ZAPIServerException,
+    ZAPIClientException,
+    ZUnprocessableResponseException
+)
 
 import requests
-from .exceptions import *
 
 
 class ZCoreRequestManager:
@@ -22,7 +27,7 @@ class ZCoreRequestManager:
         """
 
         self._auth = (username, password)
-        self._headers = {'Accept':'application/json'}
+        self._headers = {'Accept': 'application/json'}
         self._url = "https://{subdomain}.zendesk.com/api/v2/".format(subdomain=subdomain)
 
     def _get(self, api_url="", query_params=None):

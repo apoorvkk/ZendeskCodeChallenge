@@ -1,13 +1,13 @@
 import z_api
 
 
-def show_ticket(ticket_id=None):
+def show_ticket(id=None):
     """
     This will show the ticket json data of a given ticket id. Users, groups and organizations associated to the ticket
     are sideloaded in order to avoid making duplicate requests. These sideloaded resources are modified from an array
     to a dictionary datastructure.
     :return: dictionary (json data)
-    :param ticket_id: the ticket that will be used to get the associated ticket details.
+    :param id: the ticket that will be used to get the associated ticket details.
     """
 
     from ticket_viewer import username, password, subdomain
@@ -17,7 +17,7 @@ def show_ticket(ticket_id=None):
         "include": "users,groups,organizations"
     }
 
-    ticket_json_data = ticket_mgr.show_ticket(query_params=ticket_query_params, id=ticket_id)
+    ticket_json_data = ticket_mgr.show_ticket(query_params=ticket_query_params, id=id)
 
     ticket_json_data["users"] = {r.pop("id"): r for r in ticket_json_data["users"]}
     ticket_json_data["groups"] = {r.pop("id"): r for r in ticket_json_data["groups"]}
@@ -70,7 +70,7 @@ def list_comments(ticket_id=None, page_num=1):
 
     comment_query_params = {
         "include": "users",
-        "per_page": 1,
+        "per_page": 10,
         "page": page_num
     }
 
