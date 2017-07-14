@@ -1,0 +1,7 @@
+td {
+  word-break:break-all;
+}
+
+tfoot{
+  display: none;
+}

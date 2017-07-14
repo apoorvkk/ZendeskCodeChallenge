@@ -1,9 +1,7 @@
 {
-  "name": "coreui-angular",
+  "name": "Ticket Viewer",
   "version": "1.0.0-alpha.6",
-  "description": "Open Source Bootstrap Admin Template",
-  "author": "",
-  "url": "http://coreui.io",
+  "description": "Customer support tickets shown to HomesRUS employees",
   "copyright": "Copyright 2017 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "scripts": {

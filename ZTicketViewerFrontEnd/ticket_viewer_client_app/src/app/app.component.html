@@ -13,10 +13,10 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">View All Tickets </a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">View All Tickets </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/dashboard']">View Ticket </a>
+          <a class="nav-link" [routerLink]="['/ticket_detail']">View Ticket </a>
         </li>
       </ul>
     </nav>
@@ -26,14 +26,15 @@
   <main class="main">
 
     <div class="container-fluid">
-      <router-outlet></router-outlet>
+
+        <router-outlet></router-outlet>
     </div>
     <!-- /.conainer-fluid -->
   </main>
 </div>
 
 <footer class="app-footer">
-  HomesRUS &copy; 2017 HomeMakerz.
+  HomesRUS &copy; 2017 <a target="_blank" href="https://www.linkedin.com/in/apoorv-kansal-987057125/">Apoorv Kansal</a>.
   <span class="float-right">Zendesk Internship Coding Challenge
     </span>
 </footer>

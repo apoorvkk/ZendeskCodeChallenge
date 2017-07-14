@@ -12,6 +12,7 @@ import { AsideToggleDirective } from './shared/aside.directive';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
+import { TicketListingsComponent } from './ticket-listings/ticket-listings.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app.routing';
   declarations: [
     AppComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective
+    AsideToggleDirective,
+    TicketListingsComponent
   ],
   providers: [{
     provide: LocationStrategy,
