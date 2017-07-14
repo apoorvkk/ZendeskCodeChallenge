@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>6</zoom_level>
+  <zoom_level>4</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>36</x>
-      <y>258</y>
-      <w>294</w>
-      <h>162</h>
+      <x>24</x>
+      <y>172</y>
+      <w>196</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>ZTicket
 --
 Ticket attributes found in Zendesk API (omitted due to large size)
 --
 +get_ticket(id: int): ZTicket
-+list_tickets(): List&lt;ZTicket&gt;
++list_tickets(page_num: int): List&lt;ZTicket&gt;
 --
 Responsibilities
 -- Supports implementation of Ticket resourcefound in Zendesk api.
@@ -34,10 +34,10 @@ class that would do this.
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>768</x>
-      <y>756</y>
-      <w>462</w>
-      <h>222</h>
+      <x>504</x>
+      <y>504</y>
+      <w>380</w>
+      <h>220</h>
     </coordinates>
     <panel_attributes>Note..
 bg=blue
@@ -48,16 +48,21 @@ designed to be easily extended
 in future for extra and more complex
 features such as updating tickets or
 making comments private.
+There are a number of classes that
+have only static methods at the moment.
+This is because the coding challenge 
+requires only to retrieve data from the 
+api and not do any complex updating/creating.
 fontsize=40</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
-      <y>474</y>
-      <w>342</w>
-      <h>150</h>
+      <x>112</x>
+      <y>316</y>
+      <w>228</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>ZRequestManager
 --
@@ -67,7 +72,7 @@ fontsize=40</panel_attributes>
 
 --
 #_get(url: String, query_params: dictionary): dictionary (JSON data)
-#_get_json_data(api_url: String, query_params: dictionary): dictionary (JSON data)
++get_json_data(api_url: String, query_params: dictionary): dictionary (JSON data)
 --
 Responsibilities
 -- Handles any request with any HTTP method.
@@ -83,16 +88,16 @@ any other low level errors.
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>348</x>
-      <y>258</y>
-      <w>330</w>
-      <h>138</h>
+      <x>232</x>
+      <y>172</y>
+      <w>220</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>ZComment
 --
 Comment attributes found in Zendesk API (omitted due to large size)
 --
-+list_comments(query_params: dictionary, ticket_id: int): dictionary (JSON data)
++list_comments(ticket_id: int, page_num: int): dictionary (JSON data)
 --
 Responsibilities
 -- Supports implementation of Ticket Comment resource found in Zendesk api.
@@ -109,10 +114,10 @@ class that would do this.
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>744</y>
-      <w>696</w>
-      <h>300</h>
+      <x>4</x>
+      <y>496</y>
+      <w>464</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>ZendeskErrors
 --
@@ -122,10 +127,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>552</x>
-      <y>864</y>
-      <w>126</w>
-      <h>42</h>
+      <x>368</x>
+      <y>576</y>
+      <w>84</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>ZAPIRequestException
 
@@ -135,10 +140,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
-      <y>618</y>
-      <w>282</w>
-      <h>258</h>
+      <x>224</x>
+      <y>412</y>
+      <w>188</w>
+      <h>172</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
@@ -147,10 +152,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>12</x>
-      <y>864</y>
-      <w>162</w>
-      <h>42</h>
+      <x>8</x>
+      <y>576</y>
+      <w>108</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>ZUnprocessableResponseException
 
@@ -160,10 +165,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>78</x>
-      <y>618</y>
-      <w>270</w>
-      <h>258</h>
+      <x>52</x>
+      <y>412</y>
+      <w>180</w>
+      <h>172</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
@@ -172,10 +177,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>1794</w>
-      <h>636</h>
+      <x>4</x>
+      <y>4</y>
+      <w>944</w>
+      <h>424</h>
     </coordinates>
     <panel_attributes>ZendeskWrapperAPI
 --
@@ -186,10 +191,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>384</x>
-      <y>864</y>
-      <w>126</w>
-      <h>42</h>
+      <x>256</x>
+      <y>576</y>
+      <w>84</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>ZAPIServerException
 
@@ -199,10 +204,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>864</y>
-      <w>126</w>
-      <h>42</h>
+      <x>140</x>
+      <y>576</y>
+      <w>84</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>ZAPIClientException
 
@@ -212,10 +217,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
-      <y>618</y>
-      <w>108</w>
-      <h>258</h>
+      <x>224</x>
+      <y>412</y>
+      <w>72</w>
+      <h>172</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
@@ -224,10 +229,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>618</y>
-      <w>90</w>
-      <h>258</h>
+      <x>176</x>
+      <y>412</y>
+      <w>60</w>
+      <h>172</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
@@ -236,10 +241,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>84</x>
-      <y>414</y>
-      <w>96</w>
-      <h>132</h>
+      <x>56</x>
+      <y>276</y>
+      <w>64</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 </panel_attributes>
@@ -248,10 +253,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>390</y>
-      <w>114</w>
-      <h>156</h>
+      <x>336</x>
+      <y>260</y>
+      <w>76</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;240.0;170.0;240.0;170.0;10.0</additional_attributes>
@@ -259,39 +264,17 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1044</x>
-      <y>258</y>
-      <w>330</w>
-      <h>138</h>
-    </coordinates>
-    <panel_attributes>ZOrganization
---
-User attributes found in Zendesk API (omitted due to large size)
---
---
-Responsibilities
--- Holds details about a Zendesk organization.
--- In future, it can support operations on a Zendesk organization.
-
-
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>522</x>
-      <y>36</y>
-      <w>330</w>
-      <h>138</h>
+      <x>348</x>
+      <y>24</y>
+      <w>220</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>ZResource
 --
 Common resource attributes found in Zendesk API (omitted due to large size)
 --
-serialize(): dictionary of json data
-deserialize(data: dictionary of json data): ZResource
++serialize(): dictionary of json data
++deserialize_api_data(reosurce_data: dictionary of json data): ZResource
 --
 Responsibilities
 -- Focuses on wrapping a resource in Zendesk
@@ -309,10 +292,10 @@ deserializing Zendesk api data.
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>258</y>
-      <w>330</w>
-      <h>138</h>
+      <x>464</x>
+      <y>172</y>
+      <w>220</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>ZUser
 --
@@ -332,10 +315,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>168</x>
-      <y>102</y>
-      <w>366</w>
-      <h>168</h>
+      <x>112</x>
+      <y>68</y>
+      <w>244</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>590.0;10.0;10.0;10.0;10.0;260.0</additional_attributes>
@@ -343,21 +326,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>846</x>
-      <y>102</y>
-      <w>372</w>
-      <h>168</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;600.0;10.0;600.0;260.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>744</x>
-      <y>168</y>
-      <w>18</w>
-      <h>102</h>
+      <x>496</x>
+      <y>112</y>
+      <w>12</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
@@ -365,10 +337,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>168</y>
-      <w>18</w>
-      <h>102</h>
+      <x>408</x>
+      <y>112</y>
+      <w>12</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
@@ -376,10 +348,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>258</x>
-      <y>390</y>
-      <w>618</w>
-      <h>66</h>
+      <x>172</x>
+      <y>260</y>
+      <w>412</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 involves</panel_attributes>
@@ -388,22 +360,10 @@ involves</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>390</y>
-      <w>930</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-involves</panel_attributes>
-    <additional_attributes>1530.0;10.0;1530.0;60.0;10.0;60.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>498</x>
-      <y>390</y>
-      <w>336</w>
-      <h>36</h>
+      <x>332</x>
+      <y>260</y>
+      <w>224</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 authored by</panel_attributes>
@@ -412,10 +372,10 @@ authored by</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1392</x>
-      <y>258</y>
-      <w>330</w>
-      <h>138</h>
+      <x>704</x>
+      <y>172</y>
+      <w>220</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>ZAttachment
 --
@@ -435,24 +395,24 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>846</x>
-      <y>84</y>
-      <w>720</w>
-      <h>186</h>
+      <x>564</x>
+      <y>56</y>
+      <w>256</w>
+      <h>124</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;1180.0;10.0;1180.0;290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;620.0;10.0;620.0;290.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>390</y>
-      <w>1092</w>
-      <h>78</h>
+      <x>320</x>
+      <y>260</y>
+      <w>504</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 composed of</panel_attributes>
-    <additional_attributes>1800.0;10.0;1800.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>1240.0;10.0;1240.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
