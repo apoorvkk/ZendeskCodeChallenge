@@ -12,17 +12,10 @@ z_api.subdomain = settings.Z_SUBDOMAIN
 
 
 @api_view(['GET'])
-def show_ticket(request, id):
-    # Implement exception handling.
-    ticket = z_api.ZTicket.get_ticket(id=id)
-    return Response(ticket.serialize(), status=status.HTTP_200_OK)
-
-
-@api_view(['GET'])
 def list_tickets(request):
     # Implement exception handling.
     page_num = request.query_params.get('page', 1)
-    tickets, next_page, prev_page = z_api.ZTicket.list_tickets(page_num=page_num)
+    tickets, next_page, prev_page, count = z_api.ZTicket.list_tickets(page_num=page_num)
 
     next_page_url = None
     prev_page_url = None
@@ -37,7 +30,8 @@ def list_tickets(request):
     tickets_data = {
         "tickets": [],
         "next_page": next_page_url,
-        "previous_page": prev_page_url
+        "previous_page": prev_page_url,
+        "count": count
     }
     for ticket in tickets:
         tickets_data.get("tickets").append(ticket.serialize())
@@ -49,7 +43,7 @@ def list_tickets(request):
 def list_comments(request, ticket_id):
     # Implement exception handling for both url processing and ticket data.
     page_num = request.query_params.get('page', 1)
-    comments, next_page, prev_page = z_api.ZComment.list_comments(ticket_id=ticket_id, page_num=page_num)
+    comments, next_page, prev_page, count = z_api.ZComment.list_comments(ticket_id=ticket_id, page_num=page_num)
 
     next_page_url = None
     prev_page_url = None
@@ -62,7 +56,8 @@ def list_comments(request, ticket_id):
     comments_data = {
         "comments": [],
         "next_page": next_page_url,
-        "previous_page": prev_page_url
+        "previous_page": prev_page_url,
+        "count": count
     }
     for comment in comments:
         comments_data.get("comments").append(comment.serialize())

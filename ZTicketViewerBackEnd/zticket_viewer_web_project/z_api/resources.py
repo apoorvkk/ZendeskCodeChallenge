@@ -77,29 +77,6 @@ class ZTicket(ZResource):
             setattr(self, key, value)
 
     @classmethod
-    def get_ticket(cls, id=None):
-        """
-        ###############
-        This will show the details of a Zendesk ticket (eg. subject, description, requestor etc.).
-        :return: dict
-        :param id: ticket id
-        :param query_params: represents any query parameters that need to be used in the request (put in dictionary form).
-        Note that if multiple values map to one key, use this format: {"key": "val1,val2,val3..."}.
-        """
-
-        request_mgr = ZCoreRequestManager()
-
-        api_url = "tickets/{id}.json".format(id=id)
-        query_params = {
-            "include": "users,groups"
-        }
-
-        response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
-
-        # Create the ticket object populating with the given json data.
-        return ZTicket.deserialize_api_data(response)
-
-    @classmethod
     def list_tickets(cls, page_num=1):
         """
         ###############
@@ -127,7 +104,7 @@ class ZTicket(ZResource):
             response["ticket"] = single_ticket_data
             tickets.append(ZTicket.deserialize_api_data(response))
         next_page, previous_page = ZTicket._get_paginated_page_nums(response)
-        return tickets, next_page, previous_page
+        return tickets, next_page, previous_page, response.get("count", 0)
 
     @classmethod
     def deserialize_api_data(cls, resource_data):
@@ -207,7 +184,7 @@ class ZComment(ZResource):
             comments.append(ZComment.deserialize_api_data(response))
 
         next_page, previous_page = ZComment._get_paginated_page_nums(response)
-        return comments, next_page, previous_page
+        return comments, next_page, previous_page, response.get("count", 0)
 
     @classmethod
     def deserialize_api_data(cls, resource_data):
