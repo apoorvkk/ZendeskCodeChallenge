@@ -9,8 +9,6 @@ classes below allow us to easily support more complicated operations in the futu
 instance methods.
 """
 
-
-
 def get_related_resources(resource_map, resource_data, main_resource_name):
     # Add assertions.
     side_loaded_objs = [None for i in range(len(resource_map))]

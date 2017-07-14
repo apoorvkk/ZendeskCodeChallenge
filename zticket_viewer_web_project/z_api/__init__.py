@@ -2,9 +2,11 @@ username = None
 password = None
 subdomain = ""
 
-from .z_resources import (
+from .resources import (
     ZComment,
-    ZTicket
+    ZTicket,
+    ZUser,
+    ZAttachment
 )
 from .exceptions import (
     ZAPIRequestException,
