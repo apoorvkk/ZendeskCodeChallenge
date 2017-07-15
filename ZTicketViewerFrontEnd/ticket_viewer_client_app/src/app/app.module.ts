@@ -13,7 +13,9 @@ import { AsideToggleDirective } from './shared/aside.directive';
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 import { TicketListingsComponent } from './ticket-listings/ticket-listings.component';
+import {TicketService} from './shared/ticket.service';
 
+import {NG2DataTableModule} from 'angular2-datatable-pagination';
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import { TicketListingsComponent } from './ticket-listings/ticket-listings.compo
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    NG2DataTableModule
   ],
   declarations: [
     AppComponent,
@@ -32,7 +35,8 @@ import { TicketListingsComponent } from './ticket-listings/ticket-listings.compo
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },
+  TicketService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
