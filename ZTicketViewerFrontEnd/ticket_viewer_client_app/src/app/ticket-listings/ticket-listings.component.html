@@ -1,0 +1,49 @@
+<h1 class="text-center" style="padding-top: 20px; font-weight: 100">Customer Support Tickets</h1>
+<hr>
+
+<div class="card">
+  <div class="card-block">
+    <table class="display" cellspacing="0" width="100%"
+           mfData]="tickets" #mf="tickets_table" [mfRowsOnPage]="rowsOnPage"
+           [mfActivePage]="activePage" (mfOnPageChange)="onPageChange($event)"
+           [mfIsServerPagination]="true" [(mfAmountOfRows)]="totalRecords"
+
+    >
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Subject</th>
+        <th>Requester Name</th>
+        <th>Assignee Name</th>
+        <th>Created at</th>
+        <th>Manage</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let ticket of mf.data">
+          <td>
+            {{ticket.id}}
+          </td>
+          <td>{{ticket.status}}</td>
+          <td>{{ticket.subject}}</td>
+          <td>{{ticket.requester.name}}</td>
+          <td>{{ticket.assignee.name}}</td>
+          <td>{{ticket.created_at}}</td>
+          <td><a>See Details</a></td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="5">
+            <mfBootstrapPaginator></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+
