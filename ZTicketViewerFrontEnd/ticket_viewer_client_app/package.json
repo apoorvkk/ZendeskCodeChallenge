@@ -23,15 +23,15 @@
     "@angular/platform-browser-dynamic": "4.2.5",
     "@angular/router": "4.2.5",
     "@angular/upgrade": "4.2.5",
+    "angular2-datatable-pagination": "git+https://github.com/CasperTech/angular2-datatable-pagination.git",
+    "chart.js": "2.6.0",
     "core-js": "2.4.1",
+    "moment": "2.18.1",
+    "ng2-charts": "1.6.0",
+    "ngx-bootstrap": "1.7.1",
     "rxjs": "5.4.1",
     "ts-helpers": "1.1.2",
-    "zone.js": "0.8.12",
-
-    "chart.js": "2.6.0",
-    "ngx-bootstrap": "1.7.1",
-    "ng2-charts": "1.6.0",
-    "moment": "2.18.1"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
     "@angular/cli": "1.2.0",
