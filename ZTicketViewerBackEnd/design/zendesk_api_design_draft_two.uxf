@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>172</y>
+      <w>196</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>ZTicket
+--
+Ticket attributes found in Zendesk API (omitted due to large size)
+--
++get_ticket(id: int): ZTicket
++list_tickets(page_num: int): List&lt;ZTicket&gt;
+--
+Responsibilities
+-- Supports implementation of Ticket resourcefound in Zendesk api.
+-- Currently allows listing of tickets and showing of specific tickets.
+Note: future operations such as creation
+of ticket can be added here.
+Note: We sideload users and organizations when getting tickets. This
+means that we can create User and Organization objects associated to 
+a ticket with just one request. This replicates how Zendesk supports
+sideloading. However if we need to support directly retrieving
+users from Zendesk, we would create another method in the ZUser
+class that would do this.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>504</x>
+      <y>504</y>
+      <w>380</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=blue
+The design here only fufils
+the necessary features of the 
+coding challenge but has been
+designed to be easily extended
+in future for extra and more complex
+features such as updating tickets or
+making comments private.
+There are a number of classes that
+have only static methods at the moment.
+This is because the coding challenge 
+requires only to retrieve data from the 
+api and not do any complex updating/creating.
+fontsize=40</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>112</x>
+      <y>316</y>
+      <w>228</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>ZRequestManager
+--
+-_auth: Tuple Holds authentication details.
+-_headers: Dictionary Request headers
+-_url: The base API url for any request.
+
+--
+#_get(url: String, query_params: dictionary): dictionary (JSON data)
++get_json_data(api_url: String, query_params: dictionary): dictionary (JSON data)
+--
+Responsibilities
+-- Handles any request with any HTTP method.
+-- Focused only on communicating directly with
+Zendesk API and the specific details of a request
+(eg. authentication, http headers etc.).
+-- Raises exceptions about API level errors and 
+any other low level errors.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>232</x>
+      <y>172</y>
+      <w>220</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>ZComment
+--
+Comment attributes found in Zendesk API (omitted due to large size)
+--
++list_comments(ticket_id: int, page_num: int): dictionary (JSON data)
+--
+Responsibilities
+-- Supports implementation of Ticket Comment resource found in Zendesk api.
+-- Currently allows listing of comments associated with a ticket.
+Note: We sideload users when getting comments. This
+means that we can create User objects associated to 
+a comment with just one request. This replicates how Zendesk supports
+sideloading. However if we need to support directly retrieving
+users from Zendesk, we would create another method in the ZUser
+class that would do this.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>4</x>
+      <y>496</y>
+      <w>464</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>ZendeskErrors
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>368</x>
+      <y>576</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>ZAPIRequestException
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>412</y>
+      <w>188</w>
+      <h>172</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>450.0;410.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>8</x>
+      <y>576</y>
+      <w>108</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>ZUnprocessableResponseException
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>52</x>
+      <y>412</y>
+      <w>180</w>
+      <h>172</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;410.0;430.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>4</x>
+      <y>4</y>
+      <w>944</w>
+      <h>424</h>
+    </coordinates>
+    <panel_attributes>ZendeskWrapperAPI
+--
+bg=white
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>256</x>
+      <y>576</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>ZAPIServerException
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>576</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>ZAPIClientException
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>412</y>
+      <w>72</w>
+      <h>172</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>160.0;410.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>412</y>
+      <w>60</w>
+      <h>172</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;410.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>56</x>
+      <y>276</y>
+      <w>64</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>140.0;200.0;10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>260</y>
+      <w>76</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;240.0;170.0;240.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>24</y>
+      <w>220</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>ZResource
+--
+Common resource attributes found in Zendesk API (omitted due to large size)
+--
++serialize(): dictionary of json data
++deserialize_api_data(reosurce_data: dictionary of json data): ZResource
+--
+Responsibilities
+-- Focuses on wrapping a resource in Zendesk
+through abstraction.
+-- Closely coupled with the Zendesk API design.
+-- Allows support for serializing objects here to json data and also 
+deserializing Zendesk api data.
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>464</x>
+      <y>172</y>
+      <w>220</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>ZUser
+--
+User attributes found in Zendesk API (omitted due to large size)
+--
+--
+Responsibilities
+-- Holds details about a Zendesk user.
+-- In future, it can support operations on a Zendesk User.
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>112</x>
+      <y>68</y>
+      <w>244</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>590.0;10.0;10.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>112</y>
+      <w>12</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>112</y>
+      <w>12</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>172</x>
+      <y>260</y>
+      <w>412</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+involves</panel_attributes>
+    <additional_attributes>1010.0;10.0;1010.0;90.0;10.0;90.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>332</x>
+      <y>260</y>
+      <w>224</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+authored by</panel_attributes>
+    <additional_attributes>540.0;10.0;540.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>704</x>
+      <y>172</y>
+      <w>220</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>ZAttachment
+--
+Attachment attributes found in Zendesk API (omitted due to large size)
+--
+--
+Responsibilities
+-- Holds details about a Zendesk organization.
+-- In future, it can support operations on a Zendesk organization.
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>56</y>
+      <w>256</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;620.0;10.0;620.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>260</y>
+      <w>504</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+composed of</panel_attributes>
+    <additional_attributes>1240.0;10.0;1240.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

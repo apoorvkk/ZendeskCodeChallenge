@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>240</y>
+      <w>245</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>ZTicketManager
+--
+
+--
++show_ticket(id: int, query_params: dictionary): dictionary (JSON data)
++list_tickets(query_params: dictionary): dictionary (JSON data)
+--
+Responsibilities
+-- Main goal is to allow support for all operations
+on the Zendesk Ticket resource. 
+-- Supports showing single ticket details.
+-- Support showing list of tickets.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>65</x>
+      <y>30</y>
+      <w>115</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=blue
+The design here only fufils
+the necessary features of the 
+coding challenge but has been
+designed to be easily extended
+in future for extra features.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>395</x>
+      <y>40</y>
+      <w>285</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>ZRequestManager
+--
+-_auth: Tuple Holds authentication details.
+-_headers: Dictionary Request headers
+-_url: The base API url for any request.
+
+--
+#_get(url: String, query_params: dictionary): dictionary (JSON data)
+#_get_json_data(api_url: String, query_params: dictionary): dictionary (JSON data)
+--
+Responsibilities
+-- Handles any request with any HTTP method.
+-- Focused only on communicating directly with
+Zendesk API and the specific details of a request
+(eg. authentication, http headers etc.).
+-- Raises exceptions about API level errors and 
+any other low level errors.
+--
+Note
+This class should ideally be instantiated through its 
+subclasses however, furture developers might want to 
+have more fine grained control over the api wrapper
+and make customizations. Thus, this class can be 
+instantiated for those cases.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>335</x>
+      <y>150</y>
+      <w>70</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>240</y>
+      <w>275</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>ZCommentManager
+--
+
+--
++list_comments(query_params: dictionary, ticket_id: int): dictionary (JSON data)
+--
+Responsibilities
+-- Main goal is to allow support for all operations
+on the Zendesk Comment Resource.
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>150</y>
+      <w>75</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>415</y>
+      <w>195</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>HomesRUsTicketViewer
+--
++auth: Tuple holds authentication details
++headers: Dictionary Request headers
++url: The base API url for any request.
+--
++show_ticket(id: int): dictionary (JSON data)
++list_tickets(page_num: int): dictionary (JSON data)
++list_comments(page_num: int): dictionary (JSON data)
+--
+Responsibilities
+-- Focuses on showing list of tickets with relevant
+information that can be shown on the website/cli.
+-- Shows ticket details.
+-- Lists associated comments for a given ticket.
+--
+Note
+This will be a module rather than a class because
+this is using the above package and does not need
+multiple instances and does not need to modify its 
+state during the lifespan of the server/client 
+connection.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>335</x>
+      <y>350</y>
+      <w>155</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;10.0;290.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>475</x>
+      <y>350</y>
+      <w>190</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>825</x>
+      <y>25</y>
+      <w>230</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>ZendeskErrors
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>55</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZAPIRequestException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>75</y>
+      <w>215</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>410.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>185</y>
+      <w>135</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZUnprocessableResponseException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>105</y>
+      <w>215</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>410.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>195</x>
+      <y>25</y>
+      <w>605</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>ZendeskWrapperAPI
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>100</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZAPIServerException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>140</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ZAPIClientException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>100</y>
+      <w>215</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>410.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>105</y>
+      <w>210</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>400.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
