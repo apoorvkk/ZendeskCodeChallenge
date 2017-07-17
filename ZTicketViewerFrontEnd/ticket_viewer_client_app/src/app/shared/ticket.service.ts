@@ -1,27 +1,55 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, RequestOptions, Headers} from '@angular/http';
 
 @Injectable()
 export class TicketService {
-  private tickets;
-  private totalRecords: Number;
+
+  private _totalTickets: number;
+  private _currentPage: number;
+  private _tickets: {}[];
+
+  get totalTickets(): number {
+    return this._totalTickets;
+  }
+
+  set totalTickets(value: number) {
+    this._totalTickets = value;
+  }
+
+  get currentPage(): number {
+    return this._currentPage;
+  }
+
+  set currentPage(value: number) {
+    this._currentPage = value;
+  }
+
+  get tickets() {
+    return this._tickets;
+  }
+
+  set tickets(value) {
+    this._tickets = value;
+  }
+
 
   constructor(private http: Http) {
   }
 
-  public setTickets(tickets) {
-    this.tickets = tickets;
-  }
-
-  public getTickets() {
-    return this.tickets;
-  }
-
   public listTickets(pageNum: number) {
-    const headers = new Headers({
+    const headers: Headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.get('http://' + window.location.hostname + ':8000/api/v1/tickets.json?page_num=' + pageNum.toString(), headers);
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+    return this.http.get('http://' + window.location.hostname + ':8080/api/v1/tickets.json?page=' + pageNum.toString(), options);
+  }
+
+  public showTicket(ticketId: number) {
+    const headers: Headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+    return this.http.get('http://' + window.location.hostname + ':8080/api/v1/tickets/' + ticketId.toString() + '.json', options);
   }
 
 }

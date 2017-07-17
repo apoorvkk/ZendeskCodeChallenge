@@ -1,0 +1,97 @@
+
+<h1 class="text-center" style="padding-top: 20px; font-weight: 100">Ticket Details</h1>
+<hr>
+
+<div *ngIf="loading==true" class="card">
+  <div class="card-block text-center">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<div *ngIf="loading==false" class="card">
+
+  <div class="card-block">
+    <h4 class="card-title">{{ticket.subject}}</h4>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <label>ID:</label> <b> {{ticket.id? ticket.id : "N/A"}}</b> <br>
+        <label>Type: </label> <b> {{ticket.type? (ticket.type | uppercase) : "N/A"}}</b> <br>
+        <label>Status: </label> <b> {{ticket.status? (ticket.status | uppercase) : "N/A"}}</b> <br>
+        <label>Priority: </label> <b> {{ticket.priority? (ticket.priority | uppercase) : "N/A"}}</b> <br>
+        <label>Channel: </label> <b> {{ticket.channel? (ticket.channel | uppercase) : "N/A"}}</b> <br>
+        <label>Created at: </label> <b> {{ticket.created_at?(ticket.created_at | date:'short'): "N/A"}}</b> <br>
+        <br>
+        <h4 class="card-title">Description</h4>
+        <read-more [text]="ticket.description? ticket.description: 'N/A'" [maxLength]="1050"></read-more>
+
+
+
+      </div>
+
+
+      <div class="col-sm-6">
+        <div *ngIf="ticket.requester" class="card">
+          <div class="card-block">
+            <div class="row">
+              <div class="col-lg-2">
+                <img src="{{ticket.requester.photo? ticket.requester.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
+              </div>
+              <div class="col-lg-10">
+                <h5 class="card-title">&nbsp;{{ticket.requester.name}}</h5>
+                <label>Ticket relationship: </label> <b>REQUESTER</b> <br>
+                <label>Email: </label><b> {{ticket.requester.email}}</b> <br>
+                <label>Phone: </label><b> {{ticket.requester.phone ? ticket.requester.phone : "N/A"}}</b> <br>
+                <label>Role: </label><b> {{ticket.requester.role | uppercase}}</b>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div *ngIf="ticket.submitter" class="card">
+          <div class="card-block">
+            <div class="row">
+              <div class="col-lg-2">
+                <img src="{{ticket.submitter.photo? ticket.submitter.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
+              </div>
+              <div class="col-lg-10">
+                <h5 class="card-title">&nbsp;{{ticket.submitter.name}}</h5>
+                <label>Ticket relationship: </label> <b>SUBMITTER</b> <br>
+                <label>Email: </label><b> {{ticket.submitter.email}}</b> <br>
+                <label>Phone: </label><b> {{ticket.submitter.phone ? ticket.submitter.phone : "N/A"}}</b> <br>
+                <label>Role: </label><b> {{ticket.submitter.role | uppercase}}</b>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div *ngIf="ticket.assignee" class="card">
+          <div class="card-block">
+            <div class="row">
+              <div class="col-lg-2">
+                <img src="{{ticket.assignee.photo? ticket.assignee.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
+              </div>
+              <div class="col-lg-10">
+                <h5 class="card-title">&nbsp;{{ticket.assignee.name}}</h5>
+                <label>Ticket relationship: </label> <b>ASSIGNEE</b> <br>
+                <label>Email: </label><b> {{ticket.assignee.email}}</b> <br>
+                <label>Phone: </label><b> {{ticket.assignee.phone ? ticket.assignee.phone : "N/A"}}</b> <br>
+                <label>Role: </label><b> {{ticket.assignee.role | uppercase}}</b>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+   <app-comment-listings [ticketId]="ticket.id"></app-comment-listings>
+    <br>
+    <a [routerLink]="['/ticket-list']"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+  </div>
+</div>

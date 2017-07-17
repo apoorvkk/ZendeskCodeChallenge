@@ -51,7 +51,7 @@
   }
 }
 
-#ticket_paginator /deep/ .ngx-pagination {
+#comment_paginator /deep/ .ngx-pagination {
   padding-left: 0px;
   padding-right: 15px;
 }

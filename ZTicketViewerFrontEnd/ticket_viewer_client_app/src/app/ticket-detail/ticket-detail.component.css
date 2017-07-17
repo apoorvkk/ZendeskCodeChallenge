@@ -1,3 +1,8 @@
+.card {
+  margin-bottom: 0px;
+}
+
+
 .spinner.hidden {
   opacity: 0;
 }
@@ -49,9 +54,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-#ticket_paginator /deep/ .ngx-pagination {
-  padding-left: 0px;
-  padding-right: 15px;
 }
