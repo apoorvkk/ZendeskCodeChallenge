@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {TicketService} from "../shared/ticket.service";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {TicketService} from '../shared/ticket.service';
+import {isUndefined} from 'util';
 
 declare var $: any;
 
@@ -8,53 +9,40 @@ declare var $: any;
   templateUrl: './ticket-listings.component.html',
   styleUrls: ['./ticket-listings.component.css']
 })
-export class TicketListingsComponent implements OnInit {
-  private rowsOnPage: Number = 25;
-  private activePage: Number = 1;
-  private tickets = this.ticketService.getTickets();
-  private totalRecords;
+export class TicketListingsComponent implements OnInit, OnDestroy {
 
-  constructor(private ticketService: TicketService) { }
+  loading: boolean;
+  ticketsRetrieverSub: any;
+
+  constructor(private ticketsService: TicketService) { }
 
   ngOnInit() {
-    // $(document).ready(function() {
-    //   var table = $('#tickets_table').DataTable({
-    //     scrollY: 300,
-    //     scrollCollapse: true,
-    //     paging: true,
-    //     pageLength: 1,
-    //     bLengthChange: false,
-    //     searching: false,
-    //     ordering: true,
-    //     info: true
-    //   });
-    // } );
-
-
+    if (!this.ticketsService.currentPage) { // Running for the first time.
+      this.listTickets(1);
+    }
   }
 
-
-  public onPageChange(event) {
-    this.rowsOnPage = event.rowsOnPage;
-    this.activePage = event.activePage;
-    this.listTickets(this.activePage);
-  }
-
-  // public onSortOrder(event) {
-  //   this.loadData();
-  // }
-
-  public listTickets(pageNum: Number) {
-    this.ticketService.listTickets(pageNum).subscribe(
+  public listTickets(pageNum: number) {
+    this.loading = true;
+    this.ticketsRetrieverSub = this.ticketsService.listTickets(pageNum).subscribe(
       result => {
         const data = result.json();
-        this.totalRecords = data['count'];
-        this.ticketService.setTickets(data['tickets']);
+        this.ticketsService.tickets = data['tickets'];
+        this.ticketsService.totalTickets = data['count'];
+        this.ticketsService.currentPage = pageNum;
+        this.loading = false;
       },
       error => {
         console.log(error); // DO EXCEPTION HANDLING.
       }
     );
   }
+
+  ngOnDestroy(): void {
+    if (this.ticketsRetrieverSub) {
+      this.ticketsRetrieverSub.unsubscribe();
+    }
+  }
+
 
 }

@@ -12,6 +12,12 @@ z_api.subdomain = settings.Z_SUBDOMAIN
 
 
 @api_view(['GET'])
+def show_ticket(request, id):
+    # Implement exception handling.
+    ticket = z_api.ZTicket.get_ticket(id=id)
+    return Response(ticket.serialize(), status=status.HTTP_200_OK)
+
+@api_view(['GET'])
 def list_tickets(request):
     # Implement exception handling.
     page_num = request.query_params.get('page', 1)

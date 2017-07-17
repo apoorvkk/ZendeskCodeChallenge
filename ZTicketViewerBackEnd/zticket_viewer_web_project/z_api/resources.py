@@ -77,6 +77,30 @@ class ZTicket(ZResource):
             setattr(self, key, value)
 
     @classmethod
+    def get_ticket(cls, id=None):
+        """
+        ###############
+        This will show the details of a Zendesk ticket (eg. subject, description, requestor etc.).
+        :return: dict
+        :param id: ticket id
+        :param query_params: represents any query parameters that need to be used in the request (put in dictionary form).
+        Note that if multiple values map to one key, use this format: {"key": "val1,val2,val3..."}.
+        """
+
+        request_mgr = ZCoreRequestManager()
+
+        api_url = "tickets/{id}.json".format(id=id)
+        query_params = {
+            "include": "users,groups"
+        }
+
+        response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
+
+        # Create the ticket object populating with the given json data.
+        return ZTicket.deserialize_api_data(response)
+
+
+    @classmethod
     def list_tickets(cls, page_num=1):
         """
         ###############
@@ -90,9 +114,11 @@ class ZTicket(ZResource):
 
         api_url = "tickets.json"
         query_params = {
-            "include": "users,groups,",
+            "include": "users,groups",
             "per_page": 25,
-            "page": page_num
+            "page": page_num,
+            "sort_by": "created_at",
+            "sort_order": "desc"
         }
 
         response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
@@ -170,8 +196,10 @@ class ZComment(ZResource):
         api_url = "tickets/{id}/comments.json".format(id=ticket_id)
         query_params = {
             "include": "users",
-            "per_page": 1,
-            "page": page_num
+            "per_page": 5,
+            "page": page_num,
+            "sort_by": "created_at",
+            "sort_order": "desc"
         }
 
         response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
@@ -229,7 +257,7 @@ class ZUser(ZResource):
         }
 
         if resource_data.get("photo", None):
-            user_data["photo"] = resource_data.get("photo").get("mapped_content_url", None)
+            user_data["photo"] = resource_data.get("photo").get("content_url", None)
         else:
             user_data["photo"] = None
 

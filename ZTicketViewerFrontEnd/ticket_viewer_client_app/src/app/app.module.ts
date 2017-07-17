@@ -10,12 +10,18 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 
-// Routing Module
-import { AppRoutingModule } from './app.routing';
-import { TicketListingsComponent } from './ticket-listings/ticket-listings.component';
-import {TicketService} from './shared/ticket.service';
 
-import {NG2DataTableModule} from 'angular2-datatable-pagination';
+import { AppRoutingModule } from './app.routing';
+
+import { TicketListingsComponent } from './ticket-listings/ticket-listings.component';
+import { TicketService } from './shared/ticket.service';
+import {HttpModule} from '@angular/http';
+
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
+import { CommentListingsComponent } from './ticket-detail/comment-listings/comment-listings.component';
+import {CommentService} from "./ticket-detail/comment-listings/comment.service";
+import { ReadMoreComponent } from './shared/read-more/read-more.component';
 
 @NgModule({
   imports: [
@@ -24,19 +30,24 @@ import {NG2DataTableModule} from 'angular2-datatable-pagination';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    NG2DataTableModule
+    HttpModule,
+    NgxPaginationModule
   ],
   declarations: [
     AppComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    TicketListingsComponent
+    TicketListingsComponent,
+    TicketDetailComponent,
+    CommentListingsComponent,
+    ReadMoreComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-  TicketService],
+  TicketService,
+  CommentService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
