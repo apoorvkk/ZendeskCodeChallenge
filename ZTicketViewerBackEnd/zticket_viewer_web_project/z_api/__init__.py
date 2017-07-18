@@ -1,3 +1,4 @@
+# Package configuration details.
 username = None
 password = None
 subdomain = ""

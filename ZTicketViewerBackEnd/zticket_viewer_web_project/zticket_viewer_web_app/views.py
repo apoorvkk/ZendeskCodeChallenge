@@ -13,30 +13,33 @@ z_api.subdomain = settings.Z_SUBDOMAIN
 
 @api_view(['GET'])
 def show_ticket(request, id):
+    """
+    This function based view will return ticket details of a specific ticket stored at Zendesk.
+    :param request: rest_framework.response.Request
+    :param id: The id of the ticket that needs to be returned to user.
+    :return: rest_framework.response.Response (json data about the specified ticket).
+    """
+
     # Implement exception handling.
     ticket = z_api.ZTicket.get_ticket(id=id)
     return Response(ticket.serialize(), status=status.HTTP_200_OK)
 
+
 @api_view(['GET'])
 def list_tickets(request):
+    """
+    This function based view will return ticket details for the configured Zendesk account.
+    :param request: rest_framework.response.Request
+    :queryParam page: Specifies which subset of tickets to return (used for pagination).
+    :return: rest_framework.response.Response (json data about the tickets).
+    """
+
     # Implement exception handling.
     page_num = request.query_params.get('page', 1)
-    tickets, next_page, prev_page, count = z_api.ZTicket.list_tickets(page_num=page_num)
-
-    next_page_url = None
-    prev_page_url = None
-
-    if next_page:
-        next_page_url = "{uri}?page={pg_num}".format(
-            uri=urlresolvers.reverse("list-tickets"), pg_num=next_page)
-    if prev_page:
-        prev_page_url = "{uri}?page={pg_num}".format(
-            uri=urlresolvers.reverse("list-tickets"), pg_num=prev_page)
+    tickets, count = z_api.ZTicket.list_tickets(page_num=page_num)
 
     tickets_data = {
         "tickets": [],
-        "next_page": next_page_url,
-        "previous_page": prev_page_url,
         "count": count
     }
     for ticket in tickets:
@@ -47,24 +50,23 @@ def list_tickets(request):
 
 @api_view(['GET'])
 def list_comments(request, ticket_id):
+    """
+    This function based view will return comment details for a given ticket.
+    :param request: rest_framework.response.Request
+    :param ticket_id: The id of the ticket to use to get its associated comments.
+    :queryParam page: Specifies which subset of comments to return (used for pagination).
+    :return: rest_framework.response.Response (json data about the tickets).
+    """
+
     # Implement exception handling for both url processing and ticket data.
     page_num = request.query_params.get('page', 1)
-    comments, next_page, prev_page, count = z_api.ZComment.list_comments(ticket_id=ticket_id, page_num=page_num)
-
-    next_page_url = None
-    prev_page_url = None
-
-    if next_page:
-        next_page_url = "{uri}?page={page_num}".format(uri=urlresolvers.reverse("list-comments", kwargs={'ticket_id': ticket_id}), page_num=next_page)
-    if prev_page:
-        prev_page_url = "{uri}?page={page_num}".format(uri=urlresolvers.reverse("list-comments", kwargs={'ticket_id': ticket_id}), page_num=prev_page)
+    comments, count = z_api.ZComment.list_comments(ticket_id=ticket_id, page_num=page_num)
 
     comments_data = {
         "comments": [],
-        "next_page": next_page_url,
-        "previous_page": prev_page_url,
         "count": count
     }
+
     for comment in comments:
         comments_data.get("comments").append(comment.serialize())
 

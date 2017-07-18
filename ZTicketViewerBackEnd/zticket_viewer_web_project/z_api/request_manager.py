@@ -12,7 +12,7 @@ import requests
 class ZCoreRequestManager:
     """
     Responsible for wrapping the Zendesk Core API and to communicate directly with it for any given request.
-    It's aim is to fufil the relevant http methods and convert received data into json format and also store
+    It's aim is to fulfill the relevant http methods and convert received data into json format and also store
     the relevant request metadata such as authentication details and subdomain.
     For the purpose of this project, we have only written code for making get requests.
     """
@@ -24,7 +24,7 @@ class ZCoreRequestManager:
         """
 
         from z_api import username, password, subdomain
-        # MAKE ASSERTION ABOUT USERNAME, PASSWORD AND SUBDOMAIN REQUIRED.
+        ######## MAKE ASSERTION ABOUT USERNAME, PASSWORD AND SUBDOMAIN REQUIRED.
         self._auth = (username, password)
         self._headers = {'Accept': 'application/json'}
         self._url = "https://{subdomain}.zendesk.com/api/v2/".format(subdomain=subdomain)
