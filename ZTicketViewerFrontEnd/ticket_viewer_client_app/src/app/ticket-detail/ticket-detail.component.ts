@@ -1,20 +1,22 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TicketService} from '../shared/ticket.service';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TicketService } from '../shared/ticket.service';
+import { ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 
+/*
+Used to locate the specified ticket and then display its details.
+ */
 @Component({
   selector: 'app-ticket-detail',
   templateUrl: './ticket-detail.component.html',
   styleUrls: ['./ticket-detail.component.css']
 })
 export class TicketDetailComponent implements OnInit, OnDestroy {
-
-
   ticket: any;
   loading: boolean;
   ticketRetrieverSub: any;
+
   constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,25 +26,20 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
       ticketId = params['id'] ? params['id'] : null; // MAKE ASSERTION INSTEAD.
     });
 
-
-    // Look locally
+    // Look for the ticket locally from the current page of tickets.
     let localTicketFound = false;
-
     if (this.ticketService.tickets) {
       for (const ticket of this.ticketService.tickets){
         if (+ticket['id'] == ticketId) {
           this.ticket = ticket;
           localTicketFound = true;
-
           this.loading = false;
         }
-
       }
     }
 
-
+    // Fallback and make request for the specific ticket.
     if (!localTicketFound || !this.ticketService.tickets) {
-      // Use Tickets service to get the particular ticket
       this.ticketRetrieverSub = this.ticketService.showTicket(ticketId).subscribe(
         result => {
           this.ticket = result.json();
@@ -59,6 +56,6 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
     if (this.ticketRetrieverSub) {
       this.ticketRetrieverSub.unsubscribe();
     }
-
   }
+
 }

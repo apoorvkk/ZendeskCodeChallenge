@@ -1,8 +1,11 @@
 import { Directive, HostListener } from '@angular/core';
 
 /**
-* Allows the sidebar to be toggled via click.
-*/
+ * Allows the sidebar to be toggled via click.
+ * @author: Łukasz Holeczek
+ * This starter admin panel design has been adapted for the Zendesk Internship Coding Challenge.
+ */
+
 @Directive({
   selector: '[appSidebarToggler]'
 })
@@ -48,8 +51,8 @@ export class MobileSidebarToggleDirective {
 }
 
 /**
-* Allows the off-canvas sidebar to be closed via click.
-*/
+ * Allows the off-canvas sidebar to be closed via click.
+ */
 @Directive({
   selector: '[appSidebarClose]'
 })
@@ -85,8 +88,8 @@ export class SidebarOffCanvasCloseDirective {
 }
 
 export const SIDEBAR_TOGGLE_DIRECTIVES = [
-    SidebarToggleDirective,
-    SidebarMinimizeDirective,
-    SidebarOffCanvasCloseDirective,
-    MobileSidebarToggleDirective
+  SidebarToggleDirective,
+  SidebarMinimizeDirective,
+  SidebarOffCanvasCloseDirective,
+  MobileSidebarToggleDirective
 ];

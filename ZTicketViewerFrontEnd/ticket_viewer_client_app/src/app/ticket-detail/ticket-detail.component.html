@@ -1,4 +1,3 @@
-
 <h1 class="text-center" style="padding-top: 20px; font-weight: 100">Ticket Details</h1>
 <hr>
 
@@ -9,10 +8,10 @@
 </div>
 
 <div *ngIf="loading==false" class="card">
-
   <div class="card-block">
     <h4 class="card-title">{{ticket.subject}}</h4>
     <hr>
+
     <div class="row">
       <div class="col-sm-6">
         <label>ID:</label> <b> {{ticket.id? ticket.id : "N/A"}}</b> <br>
@@ -24,13 +23,11 @@
         <br>
         <h4 class="card-title">Description</h4>
         <read-more [text]="ticket.description? ticket.description: 'N/A'" [maxLength]="1050"></read-more>
-
-
-
       </div>
 
 
       <div class="col-sm-6">
+
         <div *ngIf="ticket.requester" class="card">
           <div class="card-block">
             <div class="row">
@@ -45,7 +42,6 @@
                 <label>Role: </label><b> {{ticket.requester.role | uppercase}}</b>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -63,7 +59,6 @@
                 <label>Role: </label><b> {{ticket.submitter.role | uppercase}}</b>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -81,16 +76,13 @@
                 <label>Role: </label><b> {{ticket.assignee.role | uppercase}}</b>
               </div>
             </div>
-
           </div>
         </div>
-
-
 
       </div>
     </div>
 
-   <app-comment-listings [ticketId]="ticket.id"></app-comment-listings>
+    <app-comment-listings [ticketId]="ticket.id"></app-comment-listings>
     <br>
     <a [routerLink]="['/ticket-list']"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
   </div>

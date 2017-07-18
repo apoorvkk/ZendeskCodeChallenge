@@ -354,7 +354,7 @@ class ZAttachment(ZResource):
         :return: ZAttachment object
         :param resource_data: dict
         """
-        
+
         attachment_data = {
             "id": resource_data.get("id", None),
             "content_url": resource_data.get("content_url", None),

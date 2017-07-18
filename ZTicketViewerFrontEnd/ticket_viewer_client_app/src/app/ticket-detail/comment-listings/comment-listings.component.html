@@ -1,5 +1,6 @@
 <h4 class="card-title">Comments</h4>
 <hr>
+
 <div *ngFor="let comment of comments | paginate: { id: 'comment_paginator', itemsPerPage: 5, currentPage: currentPage, totalItems: totalComments}" class="row">
   <div class="col-md-12">
     <div class="row">
@@ -11,8 +12,6 @@
       <div class="col-lg-11">
         <div class="media-body">
           <read-more id="description_body" [text]="comment.body? comment.body : 'N/A'" [maxLength]="500"></read-more>
-
-
           <br>
           <span *ngIf="comment.attachments">
                   <li *ngFor="let attachment of comment.attachments" style="list-style: none;" class="pull-left">

@@ -1,9 +1,11 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {TicketService} from '../shared/ticket.service';
-import {isUndefined} from 'util';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TicketService } from '../shared/ticket.service';
 
 declare var $: any;
 
+/*
+ Used to fetch and display tickets and their details.
+ */
 @Component({
   selector: 'app-ticket-listings',
   templateUrl: './ticket-listings.component.html',
@@ -13,23 +15,25 @@ export class TicketListingsComponent implements OnInit, OnDestroy {
 
   loading: boolean;
   ticketsRetrieverSub: any;
+  totalTickets: number;
+  currentPage: number;
 
   constructor(private ticketsService: TicketService) { }
 
   ngOnInit() {
-    if (!this.ticketsService.currentPage) { // Running for the first time.
+    if (!this.currentPage) {
       this.listTickets(1);
     }
   }
 
-  public listTickets(pageNum: number) {
+  listTickets(pageNum: number) {
     this.loading = true;
     this.ticketsRetrieverSub = this.ticketsService.listTickets(pageNum).subscribe(
       result => {
         const data = result.json();
         this.ticketsService.tickets = data['tickets'];
-        this.ticketsService.totalTickets = data['count'];
-        this.ticketsService.currentPage = pageNum;
+        this.totalTickets = data['count'];
+        this.currentPage = pageNum;
         this.loading = false;
       },
       error => {
