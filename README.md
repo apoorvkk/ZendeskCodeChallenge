@@ -1,4 +1,4 @@
-# ZendeskCodeChallenge
+# Zendesk Internship Coding Challenge 2017
 A TickerViewer web client that allows HomesRUS (a made up company) to view their Zendesk tickets.
 
 - Installation and how to use.
