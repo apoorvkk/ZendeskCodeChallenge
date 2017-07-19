@@ -36,3 +36,4 @@ I created a backend REST API that communicates directly with the Zendesk API. Fr
 - [jQuery](https://jquery.com/) - used for frontend design.
 - [Bootstrap 4](https://v4-alpha.getbootstrap.com/) - used for frontend design.
 - [Fontawesome](http://fontawesome.io/) - used for frontend design.
+- [angular2-prettyjson](https://www.npmjs.com/package/angular2-prettyjson) - used to format json data on page.

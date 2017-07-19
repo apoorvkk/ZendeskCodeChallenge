@@ -18,7 +18,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let ticket of ticketsService.tickets | paginate: { id: 'ticket_paginator', itemsPerPage: 25, currentPage: currentPage, totalItems: totalTickets }">
+        <tr *ngFor="let ticket of ticketsService.tickets | paginate: { id: 'ticket_paginator', itemsPerPage: 25, currentPage: ticketsService.currentPage, totalItems: ticketsService.totalTickets }">
             <td>
               {{ticket.id}}
             </td>

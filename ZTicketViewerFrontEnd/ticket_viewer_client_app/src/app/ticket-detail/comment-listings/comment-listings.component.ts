@@ -1,5 +1,7 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {CommentService} from './comment.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CommentService } from './comment.service';
+import { ErrorService } from '../../shared/error/error.service';
+import { Router } from '@angular/router';
 
 /*
  Used to fetch and display comments for a particular ticket.
@@ -19,7 +21,7 @@ export class CommentListingsComponent implements OnInit, OnDestroy {
   loading: boolean;
 
   @Input() ticketId: number;
-  constructor(private commentService: CommentService) { }
+  constructor(private commentService: CommentService, private router: Router, private errorService: ErrorService) { }
 
   ngOnInit() {
       this.listComments(1);
@@ -36,7 +38,13 @@ export class CommentListingsComponent implements OnInit, OnDestroy {
         this.loading = false;
       },
       error => {
-        console.log(error); // DO EXCEPTION HANDLING.
+        if (error.headers.get('content-type', '') === 'application/json') {
+          this.errorService.message = error.json();
+        } else if (error.headers.get('content-type', '') === 'text/plain') {
+          this.errorService.message = error._body;
+        }
+        this.errorService.status = error.status;
+        this.router.navigate(['/error']);
       }
     );
   }

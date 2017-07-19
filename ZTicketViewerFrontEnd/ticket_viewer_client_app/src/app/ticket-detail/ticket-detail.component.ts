@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from '../shared/ticket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ErrorService } from '../shared/error/error.service';
 
 declare var $: any;
 
@@ -17,7 +18,8 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
   loading: boolean;
   ticketRetrieverSub: any;
 
-  constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute) { }
+  constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute, private router: Router,
+              private errorService: ErrorService) { }
 
   ngOnInit() {
     this.loading = true;
@@ -46,7 +48,13 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
           this.loading = false;
         },
         error => {
-          console.log(error); // DO EXCEPTION HANDLING.
+          if (error.headers.get('content-type', '') === 'application/json') {
+            this.errorService.message = error.json();
+          } else if (error.headers.get('content-type', '') === 'text/plain') {
+            this.errorService.message = error._body;
+          }
+          this.errorService.status = error.status;
+          this.router.navigate(['/error']);
         }
       );
     }
