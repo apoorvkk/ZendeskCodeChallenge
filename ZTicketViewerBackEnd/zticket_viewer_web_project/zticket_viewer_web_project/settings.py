@@ -123,7 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Zendesk API config details
+# Zendesk API configuration details
+# https://developer.zendesk.com/rest_api/docs/core/introduction#security-and-authentication
 Z_USERNAME = "apoorv.k.kansal@gmail.com"
 Z_PASSWORD = "ZenDeskChallenge15!9793"
 Z_SUBDOMAIN = "homesrus-aus"

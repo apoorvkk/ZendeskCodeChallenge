@@ -3,9 +3,8 @@
 
 <div class="card">
   <div class="card-block">
-
-    <!--class="table-responsive table-striped table-outline table-bordered"-->
     <table id="tickets_table" class="table-responsive table-striped table-outline table-bordered" cellspacing="0" width="100%">
+
       <thead>
       <tr>
         <th>ID</th>
@@ -19,7 +18,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let ticket of ticketsService.tickets | paginate: { id: 'ticket_paginator', itemsPerPage: 25, currentPage: ticketsService.currentPage, totalItems: ticketsService.totalTickets }">
+        <tr *ngFor="let ticket of ticketsService.tickets | paginate: { id: 'ticket_paginator', itemsPerPage: 25, currentPage: currentPage, totalItems: totalTickets }">
             <td>
               {{ticket.id}}
             </td>
@@ -29,7 +28,6 @@
             <td>{{ticket.assignee.name}}</td>
             <td>{{ticket.created_at| date: 'short'}}</td>
             <td><a [routerLink]="['/ticket-detail']" [queryParams]="{id: ticket.id}">View Details</a></td>
-
         </tr>
       </tbody>
 
@@ -42,7 +40,9 @@
         <th>Created At</th>
         <th>Manage</th>
       </tfoot>
+
     </table>
+
     <div class="text-center">
       <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
       <pagination-controls (pageChange)="listTickets($event)" id="ticket_paginator"></pagination-controls>
