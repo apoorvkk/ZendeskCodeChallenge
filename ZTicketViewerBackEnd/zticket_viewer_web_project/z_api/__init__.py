@@ -9,9 +9,3 @@ from .resources import (
     ZUser,
     ZAttachment
 )
-from .exceptions import (
-    ZAPIRequestException,
-    ZAPIServerException,
-    ZAPIClientException,
-    ZUnprocessableResponseException
-)

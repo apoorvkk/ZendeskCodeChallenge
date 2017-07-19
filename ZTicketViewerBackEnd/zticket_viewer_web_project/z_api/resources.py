@@ -138,7 +138,7 @@ class ZTicket(ZResource):
             "include": "users"
         }
 
-        response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
+        response = request_mgr.get(api_url=api_url, query_params=query_params)
 
         # Create the ticket object populating with the given json data.
         return ZTicket.deserialize_api_data(response)
@@ -162,7 +162,7 @@ class ZTicket(ZResource):
             "sort_order": "desc"
         }
 
-        response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
+        response = request_mgr.get(api_url=api_url, query_params=query_params)
 
         tickets = []
 
@@ -245,7 +245,7 @@ class ZComment(ZResource):
             "sort_order": "desc"
         }
 
-        response = request_mgr.get_json_data(api_url=api_url, query_params=query_params)
+        response = request_mgr.get(api_url=api_url, query_params=query_params)
 
         comments = []
 

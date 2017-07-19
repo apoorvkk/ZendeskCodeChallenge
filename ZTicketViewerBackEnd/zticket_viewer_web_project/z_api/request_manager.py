@@ -1,11 +1,3 @@
-from json import JSONDecodeError
-from .exceptions import (
-    ZAPIRequestException,
-    ZAPIServerException,
-    ZAPIClientException,
-    ZUnprocessableResponseException
-)
-
 import requests
 
 
@@ -29,10 +21,10 @@ class ZCoreRequestManager:
         self._headers = {'Accept': 'application/json'}
         self._url = "https://{subdomain}.zendesk.com/api/v2/".format(subdomain=subdomain)
 
-    def _get(self, api_url="", query_params=None):
+    def get(self, api_url="", query_params=None):
         """
         This will make a GET request to the given url with relevant parameters.
-        :return: requests.Response
+        :return: response data in json form.
         :raises: requests.exceptions.RequestException, requests.exceptions.HTTPError
         :param api_url: represents the portion of url that identifies the target resource (eg. 'tickets.json')
         :param query_params: represents any query parameters that need to be used in the request (put in dictionary form).
@@ -44,40 +36,6 @@ class ZCoreRequestManager:
 
         response.raise_for_status()
 
-        return response
+        return response.json()
 
-    def get_json_data(self, api_url="", query_params=None):
-        """
-        This will make a GET request and return the JSON form of it.
-        :return: dict
-        :raises: exceptions.ZAPIRequestException, exceptions.ZAPIServerException, exceptions.ZAPIClientException
-        :param api_url: represents the portion of url that identifies the target resource (eg. 'tickets.json')
-        :param query_params: represents any query parameters that need to be used in the request (put in dictionary form).
-        Note that if multiple values map to one key, use this format: {"key": "val1,val2,val3..."}.
-        """
 
-        try:
-            response = self._get(api_url=api_url, query_params=query_params)
-
-            content_type = response.headers.get('content-type', '')
-            if "application/json" not in content_type and "text/plain" in content_type:
-                raise requests.exceptions.HTTPError(response.content, response)
-
-        except requests.exceptions.HTTPError as http_err:
-
-            if 500 <= http_err.response.status_code < 600:
-                raise ZAPIServerException(
-                    "{0}. Unable to communicate with Zendesk\'s API due to internal server errors.".format(
-                        str(http_err))) from http_err
-            elif 400 <= http_err.response.status_code < 500:
-                raise ZAPIClientException(str(http_err.response.json())) from http_err
-
-        except requests.exceptions.RequestException as req_err:
-            raise ZAPIRequestException("Unable to successfully communicate with Zendesk's API.") from req_err
-
-        try:
-            json_response = response.json()
-        except (JSONDecodeError, TypeError) as format_err:
-            raise ZUnprocessableResponseException("Unable to process received request data.") from format_err
-
-        return json_response
