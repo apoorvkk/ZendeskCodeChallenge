@@ -11,13 +11,17 @@ import { CommentListingsComponent } from './ticket-detail/comment-listings/comme
 import { TicketListingsComponent } from './ticket-listings/ticket-listings.component';
 import { CommentService } from './ticket-detail/comment-listings/comment.service';
 import { TicketService } from './shared/ticket.service';
+import { ErrorService } from './shared/error/error.service';
+import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
 
 import { ReadMoreComponent } from './shared/read-more.component';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PrettyJsonModule } from 'angular2-prettyjson';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
+import { HttpErrorComponent } from './shared/error/http-error/http-error.component';
+import { ClientErrorComponent } from './shared/error/client-error/client-error.component';
 
 @NgModule({
   imports: [
@@ -25,7 +29,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     AppRoutingModule,
     TabsModule.forRoot(),
     HttpModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    PrettyJsonModule
   ],
   declarations: [
     AppComponent,
@@ -33,14 +38,18 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     TicketListingsComponent,
     TicketDetailComponent,
     CommentListingsComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
+    NotFoundPageComponent,
+    HttpErrorComponent,
+    ClientErrorComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
   TicketService,
-  CommentService],
+  CommentService,
+  ErrorService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

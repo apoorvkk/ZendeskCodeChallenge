@@ -9,20 +9,20 @@
 
 <div *ngIf="loading==false" class="card">
   <div class="card-block">
-    <h4 class="card-title">{{ticket.subject}}</h4>
+    <h4 class="card-title">{{ticket.subject ? ticket.subject : 'N/A'}}</h4>
     <hr>
 
     <div class="row">
       <div class="col-sm-6">
-        <label>ID:</label> <b> {{ticket.id? ticket.id : "N/A"}}</b> <br>
-        <label>Type: </label> <b> {{ticket.type? (ticket.type | uppercase) : "N/A"}}</b> <br>
-        <label>Status: </label> <b> {{ticket.status? (ticket.status | uppercase) : "N/A"}}</b> <br>
-        <label>Priority: </label> <b> {{ticket.priority? (ticket.priority | uppercase) : "N/A"}}</b> <br>
-        <label>Channel: </label> <b> {{ticket.channel? (ticket.channel | uppercase) : "N/A"}}</b> <br>
-        <label>Created at: </label> <b> {{ticket.created_at?(ticket.created_at | date:'short'): "N/A"}}</b> <br>
+        <label>ID:</label> <b> {{ticket.id ? ticket.id : 'N/A'}}</b> <br>
+        <label>Type: </label> <b> {{ticket.type ? (ticket.type | uppercase) : 'N/A'}}</b> <br>
+        <label>Status: </label> <b> {{ticket.status ? (ticket.status | uppercase) : 'N/A'}}</b> <br>
+        <label>Priority: </label> <b> {{ticket.priority ? (ticket.priority | uppercase) : 'N/A'}}</b> <br>
+        <label>Channel: </label> <b> {{ticket.channel ? (ticket.channel | uppercase) : 'N/A'}}</b> <br>
+        <label>Created at: </label> <b> {{ticket.created_at ?(ticket.created_at | date:'short') : 'N/A'}}</b> <br>
         <br>
         <h4 class="card-title">Description</h4>
-        <read-more [text]="ticket.description? ticket.description: 'N/A'" [maxLength]="1050"></read-more>
+        <read-more [text]="ticket.description ? ticket.description : 'N/A'" [maxLength]="1050"></read-more>
       </div>
 
 
@@ -32,14 +32,14 @@
           <div class="card-block">
             <div class="row">
               <div class="col-lg-2">
-                <img src="{{ticket.requester.photo? ticket.requester.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
+                <img src="{{ticket.requester.photo ? ticket.requester.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
               </div>
               <div class="col-lg-10">
-                <h5 class="card-title">&nbsp;{{ticket.requester.name}}</h5>
+                <h5 class="card-title">&nbsp;{{ticket.requester.name ? ticket.requester.name : 'N/A'}}</h5>
                 <label>Ticket relationship: </label> <b>REQUESTER</b> <br>
-                <label>Email: </label><b> {{ticket.requester.email}}</b> <br>
-                <label>Phone: </label><b> {{ticket.requester.phone ? ticket.requester.phone : "N/A"}}</b> <br>
-                <label>Role: </label><b> {{ticket.requester.role | uppercase}}</b>
+                <label>Email: </label><b> {{ticket.requester.email ? ticket.requester.email : 'N/A'}}</b> <br>
+                <label>Phone: </label><b> {{ticket.requester.phone ? ticket.requester.phone : 'N/A'}}</b> <br>
+                <label>Role: </label><b> {{ticket.requester.role ? (ticket.requester.role | uppercase) : 'N/A'}}</b>
               </div>
             </div>
           </div>
@@ -49,14 +49,14 @@
           <div class="card-block">
             <div class="row">
               <div class="col-lg-2">
-                <img src="{{ticket.submitter.photo? ticket.submitter.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
+                <img src="{{ticket.submitter.photo ? ticket.submitter.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
               </div>
               <div class="col-lg-10">
-                <h5 class="card-title">&nbsp;{{ticket.submitter.name}}</h5>
+                <h5 class="card-title">&nbsp;{{ticket.submitter.name ? ticket.submitter.name : 'N/A'}}</h5>
                 <label>Ticket relationship: </label> <b>SUBMITTER</b> <br>
-                <label>Email: </label><b> {{ticket.submitter.email}}</b> <br>
-                <label>Phone: </label><b> {{ticket.submitter.phone ? ticket.submitter.phone : "N/A"}}</b> <br>
-                <label>Role: </label><b> {{ticket.submitter.role | uppercase}}</b>
+                <label>Email: </label><b> {{ticket.submitter.email ? ticket.submitter.email : 'N/A'}}</b> <br>
+                <label>Phone: </label><b> {{ticket.submitter.phone ? ticket.submitter.phone : 'N/A'}}</b> <br>
+                <label>Role: </label><b> {{ticket.submitter.role ? (ticket.submitter.role | uppercase) : 'N/A'}}</b>
               </div>
             </div>
           </div>
@@ -69,11 +69,11 @@
                 <img src="{{ticket.assignee.photo? ticket.assignee.photo : '/assets/img/no_img.gif'}}" class="img-thumbnail" width="100" height="100">
               </div>
               <div class="col-lg-10">
-                <h5 class="card-title">&nbsp;{{ticket.assignee.name}}</h5>
+                <h5 class="card-title">&nbsp;{{ticket.assignee.name ? ticket.assignee.name : 'N/A'}}</h5>
                 <label>Ticket relationship: </label> <b>ASSIGNEE</b> <br>
-                <label>Email: </label><b> {{ticket.assignee.email}}</b> <br>
-                <label>Phone: </label><b> {{ticket.assignee.phone ? ticket.assignee.phone : "N/A"}}</b> <br>
-                <label>Role: </label><b> {{ticket.assignee.role | uppercase}}</b>
+                <label>Email: </label><b> {{ticket.assignee.email ? ticket.assignee.email : 'N/A'}}</b> <br>
+                <label>Phone: </label><b> {{ticket.assignee.phone ? ticket.assignee.phone : 'N/A'}}</b> <br>
+                <label>Role: </label><b> {{ticket.assignee.role ? (ticket.assignee.role | uppercase) : 'N/A'}}</b>
               </div>
             </div>
           </div>

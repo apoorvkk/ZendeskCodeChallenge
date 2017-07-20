@@ -34,8 +34,8 @@ class that would do this.
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>504</x>
-      <y>504</y>
+      <x>4</x>
+      <y>444</y>
       <w>380</w>
       <h>220</h>
     </coordinates>
@@ -115,69 +115,6 @@ class that would do this.
     <id>UMLPackage</id>
     <coordinates>
       <x>4</x>
-      <y>496</y>
-      <w>464</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes>ZendeskErrors
---
-bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>368</x>
-      <y>576</y>
-      <w>84</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>ZAPIRequestException
-
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>224</x>
-      <y>412</y>
-      <w>188</w>
-      <h>172</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-</panel_attributes>
-    <additional_attributes>450.0;410.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>8</x>
-      <y>576</y>
-      <w>108</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>ZUnprocessableResponseException
-
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>52</x>
-      <y>412</y>
-      <w>180</w>
-      <h>172</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-</panel_attributes>
-    <additional_attributes>10.0;410.0;430.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>4</x>
       <y>4</y>
       <w>944</w>
       <h>424</h>
@@ -187,56 +124,6 @@ layer=1</panel_attributes>
 bg=white
 layer=-1</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>256</x>
-      <y>576</y>
-      <w>84</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>ZAPIServerException
-
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>140</x>
-      <y>576</y>
-      <w>84</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>ZAPIClientException
-
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>224</x>
-      <y>412</y>
-      <w>72</w>
-      <h>172</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-</panel_attributes>
-    <additional_attributes>160.0;410.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>176</x>
-      <y>412</y>
-      <w>60</w>
-      <h>172</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-</panel_attributes>
-    <additional_attributes>10.0;410.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

@@ -18,15 +18,15 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let ticket of ticketsService.tickets | paginate: { id: 'ticket_paginator', itemsPerPage: 25, currentPage: currentPage, totalItems: totalTickets }">
+        <tr *ngFor="let ticket of ticketsService.tickets | paginate: { id: 'ticket_paginator', itemsPerPage: 25, currentPage: ticketsService.currentPage, totalItems: ticketsService.totalTickets }">
             <td>
-              {{ticket.id}}
+              {{ticket.id ? ticket.id: 'N/A'}}
             </td>
-            <td>{{ticket.status}}</td>
-            <td>{{ticket.subject}}</td>
-            <td>{{ticket.requester.name}}</td>
-            <td>{{ticket.assignee.name}}</td>
-            <td>{{ticket.created_at| date: 'short'}}</td>
+            <td>{{ticket.status ? ticket.status : 'N/A'}}</td>
+            <td>{{ticket.subject ? ticket.subject : 'N/A'}}</td>
+            <td>{{ticket.requester.name ? ticket.requester.name : 'N/A'}}</td>
+            <td>{{ticket.assignee.name ? ticket.assignee.name : 'N/A'}}</td>
+            <td>{{ticket.created_at ? (ticket.created_at| date: 'short') : 'N/A'}}</td>
             <td><a [routerLink]="['/ticket-detail']" [queryParams]="{id: ticket.id}">View Details</a></td>
         </tr>
       </tbody>

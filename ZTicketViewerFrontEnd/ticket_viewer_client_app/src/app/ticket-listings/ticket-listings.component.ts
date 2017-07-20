@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TicketService } from '../shared/ticket.service';
+import { ErrorService } from '../shared/error/error.service';
 
 declare var $: any;
 
@@ -15,29 +17,36 @@ export class TicketListingsComponent implements OnInit, OnDestroy {
 
   loading: boolean;
   ticketsRetrieverSub: any;
-  totalTickets: number;
-  currentPage: number;
 
-  constructor(private ticketsService: TicketService) { }
+  constructor(private ticketsService: TicketService, private router: Router, private errorService: ErrorService) { }
 
   ngOnInit() {
-    if (!this.currentPage) {
+    if (this.ticketsService.currentPage === 0) {
       this.listTickets(1);
     }
   }
 
   listTickets(pageNum: number) {
+    if (pageNum <= 0) {
+      this.errorService.message = 'Please supply a page number that is greater than 0.';
+      this.router.navigate(['/client-error']);
+    }
     this.loading = true;
     this.ticketsRetrieverSub = this.ticketsService.listTickets(pageNum).subscribe(
       result => {
         const data = result.json();
         this.ticketsService.tickets = data['tickets'];
-        this.totalTickets = data['count'];
-        this.currentPage = pageNum;
+        this.ticketsService.totalTickets = data['count'];
+        this.ticketsService.currentPage = pageNum;
         this.loading = false;
       },
       error => {
-        console.log(error); // DO EXCEPTION HANDLING.
+        if (error.headers.get('content-type', '') === 'application/json') {
+          this.errorService.message = error.json();
+        } else if (error.headers.get('content-type', '') === 'text/plain') {
+          this.errorService.message = error._body.replace(/\n/g, '<br />').replace(/\t/g, '&nbsp;&nbsp;&nbsp;');
+        }
+        this.router.navigate(['/http-error']);
       }
     );
   }

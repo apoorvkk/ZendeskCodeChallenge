@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from '../shared/ticket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ErrorService } from '../shared/error/error.service';
 
 declare var $: any;
 
@@ -17,14 +18,20 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
   loading: boolean;
   ticketRetrieverSub: any;
 
-  constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute) { }
+  constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute, private router: Router,
+              private errorService: ErrorService) { }
 
   ngOnInit() {
     this.loading = true;
     let ticketId = 0;
     this.activatedRoute.queryParams.subscribe((params) => {
-      ticketId = params['id'] ? params['id'] : null; // MAKE ASSERTION INSTEAD.
+      ticketId = params['id'] ? Number(params['id']) : null;
     });
+
+    if (ticketId === null || Number.isNaN(ticketId) || ticketId <= 0 || typeof ticketId !== 'number') {
+      this.errorService.message = 'Please supply a valid ticket id (must be numerical and greater than 0).';
+      this.router.navigate(['/client-error']);
+    }
 
     // Look for the ticket locally from the current page of tickets.
     let localTicketFound = false;
@@ -46,7 +53,12 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
           this.loading = false;
         },
         error => {
-          console.log(error); // DO EXCEPTION HANDLING.
+          if (error.headers.get('content-type', '') === 'application/json') {
+            this.errorService.message = error.json();
+          } else if (error.headers.get('content-type', '') === 'text/plain') {
+            this.errorService.message = error._body;
+          }
+          this.router.navigate(['/http-error']);
         }
       );
     }

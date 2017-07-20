@@ -6,7 +6,24 @@ Used to communicate with REST api server which allows us to get the necessary ti
  */
 @Injectable()
 export class TicketService {
-  private _tickets: {}[];
+  private _tickets = [];
+  private _totalTickets = 0;
+  private _currentPage = 0;
+
+  get currentPage(): number {
+    return this._currentPage;
+  }
+
+  set currentPage(value: number) {
+    this._currentPage = value;
+  }
+  get totalTickets(): number {
+    return this._totalTickets;
+  }
+
+  set totalTickets(value: number) {
+    this._totalTickets = value;
+  }
 
   get tickets() {
     return this._tickets;
