@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 
+/*
+Used to store any error related messages so that when the error component is displayed,
+the message here is used.
+ */
 @Injectable()
 export class ErrorService {
 
-  private _message: any;
-  private _status: number;
+  private _message: string;
 
   constructor() { }
 
-  get status(): number {
-    return this._status;
-  }
-
-  set status(value: number) {
-    this._status = value;
-  }
   get message(): any {
     return this._message;
   }
@@ -25,6 +21,5 @@ export class ErrorService {
 
   reset() {
     this._message = null;
-    this._status = null;
   }
 }

@@ -1,0 +1,14 @@
+<h1 class="text-center" style="padding-top: 20px; font-weight: 100; color: red;">Error</h1>
+<hr>
+
+<div class="card">
+  <div class="card-block">
+    <b>Unable to communicate successfully with our servers. This could be due to malformed requests with invalid input or server issues.
+    Please try again later or contact your supervisor.</b> <br>
+    <pre *ngIf="wantErrorTrace" style="border: 1px solid black" [innerHTML]="errorService.message | json:4"></pre>
+    <br>
+    <a (click)="toggleErrorTraceVisibility()" style="color:#20a8d8">{{errorTracePrompt}}</a>
+  </div>
+</div>
+
+

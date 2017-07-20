@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TicketListingsComponent } from './ticket-listings/ticket-listings.component';
 import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
-import {NotFoundPageComponent} from './shared/not-found-page/not-found-page.component';
-import { ErrorComponent } from './shared/error/error.component';
+import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
+import { HttpErrorComponent } from './shared/error/http-error/http-error.component';
+import { ClientErrorComponent } from './shared/error/client-error/client-error.component';
 
 
 export const routes: Routes = [
@@ -21,8 +22,12 @@ export const routes: Routes = [
     path: '404',
   },
   {
-    component: ErrorComponent,
-    path: 'error'
+    component: HttpErrorComponent,
+    path: 'http-error'
+  },
+  {
+    component: ClientErrorComponent,
+    path: 'client-error'
   },
   {
     path: '**',

@@ -6,20 +6,20 @@
     <div class="row">
       <div class="col-lg-1">
         <span class="pull-left">
-          <img class="media-object img-thumbnail " src="{{comment.author.photo? comment.author.photo : '/assets/img/no_img.gif'}}">
+          <img class="media-object img-thumbnail " src="{{comment.author.photo ? comment.author.photo : '/assets/img/no_img.gif'}}">
         </span>
       </div>
       <div class="col-lg-11">
         <div class="media-body">
-          <read-more id="description_body" [text]="comment.body? comment.body : 'N/A'" [maxLength]="500"></read-more>
+          <read-more id="description_body" [text]="comment.body ? comment.body : 'N/A'" [maxLength]="500"></read-more>
           <br>
           <span *ngIf="comment.attachments">
                   <li *ngFor="let attachment of comment.attachments" style="list-style: none;" class="pull-left">
-                     <a href="{{attachment.content_url}}">{{attachment.content_url}}</a>
+                     <a href="{{attachment.content_url ? attachment.content_url : ''}}">{{attachment.content_url ? attachment.content_url : ''}}</a>
                   </li>
                   <br>
                </span>
-          <small class="text-muted">{{comment.author.name}} ({{comment.author.role | uppercase}})| {{comment.created_at | date:'short'}}</small>
+          <small class="text-muted">{{comment.author.name ? comment.author.name : 'N/A'}} ({{comment.author.role ? (comment.author.role | uppercase) : 'N/A'}})| {{comment.created_at ? (comment.created_at | date:'short') : 'N/A'}}</small>
           <hr>
         </div>
       </div>

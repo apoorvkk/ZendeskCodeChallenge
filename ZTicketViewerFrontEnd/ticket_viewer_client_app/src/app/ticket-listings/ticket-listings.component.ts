@@ -27,6 +27,10 @@ export class TicketListingsComponent implements OnInit, OnDestroy {
   }
 
   listTickets(pageNum: number) {
+    if (pageNum <= 0) {
+      this.errorService.message = 'Please supply a page number that is greater than 0.';
+      this.router.navigate(['/client-error']);
+    }
     this.loading = true;
     this.ticketsRetrieverSub = this.ticketsService.listTickets(pageNum).subscribe(
       result => {
@@ -42,9 +46,7 @@ export class TicketListingsComponent implements OnInit, OnDestroy {
         } else if (error.headers.get('content-type', '') === 'text/plain') {
           this.errorService.message = error._body.replace(/\n/g, '<br />').replace(/\t/g, '&nbsp;&nbsp;&nbsp;');
         }
-
-        this.errorService.status = error.status;
-        this.router.navigate(['/error']);
+        this.router.navigate(['/http-error']);
       }
     );
   }

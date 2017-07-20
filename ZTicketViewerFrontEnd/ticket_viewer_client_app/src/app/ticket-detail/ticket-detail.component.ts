@@ -25,8 +25,13 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
     this.loading = true;
     let ticketId = 0;
     this.activatedRoute.queryParams.subscribe((params) => {
-      ticketId = params['id'] ? params['id'] : null; // MAKE ASSERTION INSTEAD.
+      ticketId = params['id'] ? Number(params['id']) : null;
     });
+
+    if (ticketId === null || Number.isNaN(ticketId) || ticketId <= 0 || typeof ticketId !== 'number') {
+      this.errorService.message = 'Please supply a valid ticket id (must be numerical and greater than 0).';
+      this.router.navigate(['/client-error']);
+    }
 
     // Look for the ticket locally from the current page of tickets.
     let localTicketFound = false;
@@ -53,8 +58,7 @@ export class TicketDetailComponent implements OnInit, OnDestroy {
           } else if (error.headers.get('content-type', '') === 'text/plain') {
             this.errorService.message = error._body;
           }
-          this.errorService.status = error.status;
-          this.router.navigate(['/error']);
+          this.router.navigate(['/http-error']);
         }
       );
     }

@@ -28,6 +28,11 @@ export class CommentListingsComponent implements OnInit, OnDestroy {
   }
 
   listComments(pageNum: number) {
+    if (pageNum <= 0) {
+      this.errorService.message = 'Please supply a page number that is greater than 0.';
+      this.router.navigate(['/client-error']);
+    }
+
     this.loading = true;
     this.commentsRetrieverSub = this.commentService.listComments(pageNum, this.ticketId).subscribe(
       result => {
@@ -43,8 +48,7 @@ export class CommentListingsComponent implements OnInit, OnDestroy {
         } else if (error.headers.get('content-type', '') === 'text/plain') {
           this.errorService.message = error._body;
         }
-        this.errorService.status = error.status;
-        this.router.navigate(['/error']);
+        this.router.navigate(['/http-error']);
       }
     );
   }
