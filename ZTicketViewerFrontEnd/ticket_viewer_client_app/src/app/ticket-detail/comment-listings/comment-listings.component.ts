@@ -33,7 +33,7 @@ export class CommentListingsComponent implements OnInit, OnDestroy {
       this.router.navigate(['/client-error']);
     }
 
-    if (this.ticketId === null || Number.isNaN(this.ticketId) || ticketId <= 0 || typeof this.ticketId !== 'number') {
+    if (this.ticketId === null || Number.isNaN(this.ticketId) || this.ticketId <= 0 || typeof this.ticketId !== 'number') {
       this.errorService.message = 'Please supply a valid ticket id (must be numerical and greater than 0).';
       this.router.navigate(['/client-error']);
     }
