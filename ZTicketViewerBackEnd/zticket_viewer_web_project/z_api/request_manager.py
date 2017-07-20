@@ -16,7 +16,6 @@ class ZCoreRequestManager:
         """
 
         from z_api import username, password, subdomain
-        ######## MAKE ASSERTION ABOUT USERNAME, PASSWORD AND SUBDOMAIN REQUIRED.
         self._auth = (username, password)
         self._headers = {'Accept': 'application/json'}
         self._url = "https://{subdomain}.zendesk.com/api/v2/".format(subdomain=subdomain)
@@ -25,13 +24,13 @@ class ZCoreRequestManager:
         """
         This will make a GET request to the given url with relevant parameters.
         :return: response data in json form.
-        :raises: requests.exceptions.RequestException, requests.exceptions.HTTPError
         :param api_url: represents the portion of url that identifies the target resource (eg. 'tickets.json')
         :param query_params: represents any query parameters that need to be used in the request (put in dictionary form).
         Note that if multiple values map to one key, use this format: {"key": "val1,val2,val3..."}.
         """
 
         full_url = self._url + api_url
+
         response = requests.get(full_url, auth=self._auth, headers=self._headers, params=query_params)
 
         response.raise_for_status()

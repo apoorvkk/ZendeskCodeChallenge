@@ -1,10 +1,9 @@
 from django.conf import settings
 from rest_framework import status
-from rest_framework.exceptions import NotFound
+from rest_framework import exceptions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import z_api
-from zticket_viewer_web_app import exceptions
 import requests
 
 z_api.username = settings.Z_USERNAME
@@ -21,7 +20,6 @@ def show_ticket(request, id):
     :return: rest_framework.response.Response (json data about the specified ticket).
     """
 
-    # Implement exception handling.
     try:
         ticket = z_api.ZTicket.get_ticket(id=id)
     except requests.exceptions.HTTPError as http_err:
@@ -36,10 +34,10 @@ def show_ticket(request, id):
             message = "(STATUS {code}): ".format(code=http_err.response.status_code)
             message += http_err.response.content
 
-        raise exceptions.APIServerException(default_detail=message)
+        raise exceptions.APIException(message)
 
     except requests.exceptions.RequestException as req_err:
-        raise exceptions.APIServerException(default_detail=str(req_err))
+        raise exceptions.APIException(str(req_err))
 
     return Response(ticket.serialize(), status=status.HTTP_200_OK)
 
@@ -53,7 +51,6 @@ def list_tickets(request):
     :return: rest_framework.response.Response (json data about the tickets).
     """
 
-    # Implement exception handling.
     page_num = request.query_params.get('page', 1)
 
     try:
@@ -61,7 +58,6 @@ def list_tickets(request):
     except requests.exceptions.HTTPError as http_err:
         message = ''
         content_type = http_err.response.headers.get('content-type', '')
-
         if "application/json" in content_type:
             message = http_err.response.json()
             message['status'] = http_err.response.status_code
@@ -70,10 +66,13 @@ def list_tickets(request):
             message = "(STATUS {code}): ".format(code=http_err.response.status_code)
             message += http_err.response.content
 
-        raise exceptions.APIServerException(default_detail=message)
+        else:
+            message = "Unknown error occurred."
+
+        raise exceptions.APIException(message)
 
     except requests.exceptions.RequestException as req_err:
-        raise exceptions.APIServerException(default_detail=str(req_err))
+        raise exceptions.APIException(str(req_err))
 
     tickets_data = {
         "tickets": [],
@@ -95,7 +94,6 @@ def list_comments(request, ticket_id):
     :return: rest_framework.response.Response (json data about the tickets).
     """
 
-    # Implement exception handling for both url processing and ticket data.
     page_num = request.query_params.get('page', 1)
 
     try:
@@ -114,10 +112,10 @@ def list_comments(request, ticket_id):
             message = "(STATUS {code}): ".format(code=http_err.response.status_code)
             message += http_err.response.content
 
-        raise exceptions.APIServerException(default_detail=message)
+        raise exceptions.APIException(message)
 
     except requests.exceptions.RequestException as req_err:
-        raise exceptions.APIServerException(default_detail=str(req_err))
+        raise exceptions.APIException(str(req_err))
 
     comments_data = {
         "comments": [],
@@ -132,4 +130,5 @@ def list_comments(request, ticket_id):
 
 @api_view(['GET'])
 def not_found(request):
-    raise NotFound("The requested url could not be found.")
+    raise exceptions.NotFound(
+        'The requested resource could not be found. This could be due to invalid input or a malformed url')
