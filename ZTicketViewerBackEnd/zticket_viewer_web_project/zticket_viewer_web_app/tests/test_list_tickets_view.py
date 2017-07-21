@@ -2,12 +2,13 @@ from unittest.mock import Mock
 from unittest import mock
 from django.test import TestCase
 from django.test import Client
+from rest_framework.reverse import reverse
 import requests
 import urllib.parse
 import z_api
 
 
-from rest_framework.reverse import reverse
+
 
 client = Client()
 
@@ -65,6 +66,7 @@ class TestListTicketsView(TestCase):
 
         # Check status code of response to be 200
         self.assertEquals(response.status_code, 200)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'tickets': [
             {'id': 10, 'channel': 'web', 'created_at': '2017-07-15T06:08:25Z', 'subject': 'I need some homes.',
@@ -97,12 +99,13 @@ class TestListTicketsView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'detail': '(STATUS 500): There seems to be an internal server issue.'}
         self.assertEquals(expected_json_output, response.data)
 
     def test_bad_request_with_json_response_from_zendesk(self, mock_list_tickets):
-        # Provide incorrect username/password
+        # Provide incorrect username/password.
         z_api.username = "fake_email@email.com"
         z_api.password = "fake_password"
         zendesk_response = Mock(headers={'content-type': 'application/json'}, status_code=401)
@@ -118,6 +121,7 @@ class TestListTicketsView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'error': "Couldn't authenticate you", 'status': '401'}
         self.assertEquals(expected_json_output, response.data)
@@ -132,6 +136,7 @@ class TestListTicketsView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'detail': 'Internal server error.'}
         self.assertEquals(expected_json_output, response.data)

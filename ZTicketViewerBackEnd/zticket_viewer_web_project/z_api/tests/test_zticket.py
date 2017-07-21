@@ -1,8 +1,8 @@
 import json
 import requests
 import z_api
-from unittest import mock
 import unittest
+from unittest import mock
 
 
 @mock.patch('z_api.ZCoreRequestManager.get')
@@ -50,6 +50,7 @@ class TestListTickets(unittest.TestCase):
         for ticket_obj in ticket_objs:
 
             self.assertEqual(isinstance(ticket_obj, z_api.ZTicket), True)
+
             # Check some major contents of the object.
             self.assertEqual(isinstance(ticket_obj.requester, z_api.ZUser), True)
             self.assertEqual(isinstance(ticket_obj.submitter, z_api.ZUser), True)

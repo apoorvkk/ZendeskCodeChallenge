@@ -2,11 +2,10 @@ from unittest.mock import Mock
 from unittest import mock
 from django.test import TestCase
 from django.test import Client
+from rest_framework.reverse import reverse
 import requests
 import z_api
 
-
-from rest_framework.reverse import reverse
 
 client = Client()
 
@@ -35,8 +34,10 @@ class TestShowTicketView(TestCase):
         mock_show_ticket.return_value = ticket
 
         response = client.get(reverse('show-ticket', kwargs={'id': 10}))
+
         # Check status code of response to be 200
         self.assertEquals(response.status_code, 200)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'id': 10, 'channel': 'web', 'created_at': '2017-07-15T06:08:25Z',
                                 'subject': 'I need some homes.', 'description': 'Buying a home.', 'status': 'open',
@@ -44,7 +45,6 @@ class TestShowTicketView(TestCase):
                                 'submitter': {'id': 1022, 'name': 'James Fish', 'email': 'james@fish.com'},
                                 'assignee': {'id': 114273319939, 'name': 'Apoorv Kansal',
                                              'email': 'apoorv.k.kansal@gmail.com'}}
-
         self.assertEquals(expected_json_output, response.data)
 
     def test_server_error_with_plain_text_response_from_zendesk(self, mock_show_ticket):
@@ -56,6 +56,7 @@ class TestShowTicketView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'detail': '(STATUS 500): There seems to be an internal server issue.'}
         self.assertEquals(expected_json_output, response.data)
@@ -72,6 +73,7 @@ class TestShowTicketView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'error': 'Ticket not found.', 'status': '400'}
         self.assertEquals(expected_json_output, response.data)
@@ -83,6 +85,7 @@ class TestShowTicketView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'detail': 'Internal server error.'}
         self.assertEquals(expected_json_output, response.data)

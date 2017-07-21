@@ -53,6 +53,7 @@ class TestListCommentsView(TestCase):
 
         # Check status code of response to be 200
         self.assertEquals(response.status_code, 200)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'comments': [
             {'id': 10, 'type': 'Comment', 'body': 'A really BIG home.', 'channel': 'web',
@@ -78,6 +79,7 @@ class TestListCommentsView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'detail': '(STATUS 500): There seems to be an internal server issue.'}
         self.assertEquals(expected_json_output, response.data)
@@ -96,6 +98,7 @@ class TestListCommentsView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'error': 'Ticket not found.', 'status': '400'}
         self.assertEquals(expected_json_output, response.data)
@@ -110,6 +113,7 @@ class TestListCommentsView(TestCase):
 
         # Check status code of response to be 500
         self.assertEquals(response.status_code, 500)
+
         # Check json data returned is the expected json data.
         expected_json_output = {'detail': 'Internal server error.'}
         self.assertEquals(expected_json_output, response.data)
