@@ -38,14 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders', #### REMOVE FOR PRODUCTION.
+    'corsheaders',
     'zticket_viewer_web_app'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware', #### REMOVE FOR PRODUCTION
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -130,5 +130,6 @@ Z_PASSWORD = "ZenDeskChallenge15!9793"
 Z_SUBDOMAIN = "homesrus-aus"
 
 
-# CORS REMOVE FOR PRODUCTION
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:4200'
+)
