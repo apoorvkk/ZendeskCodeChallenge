@@ -8,7 +8,7 @@ Requirements:
 - `git`
 - `python3+`, `pip`
 - `virtualenv` - `pip install virtualenv`
-- `node` - [install here](https://nodejs.org/en/)
+- `node` - [install here](https://nodejs.org/en/). (**NOTE**: must be `Node 6.9` or above)
 - `npm` - (should be installed with `node`)
 - `angular-cli` - `npm install -g @angular/cli`
 
@@ -61,7 +61,7 @@ python manage.py runserver localhost:8080
 
 ### STEP FIVE - Install Frontend Packages
 
-Leaving the first terminal running the backend server as it is, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. `/your_computer_directory/ZendeskEnv/`) Run the two commands below to install the frontend dependencies:
+Leaving the first terminal running the backend server as it is, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. `/your_computer_directory/ZendeskEnv/`). Run the two commands below to install the frontend dependencies:
 ```
 cd ZendeskCodeChallenge/ZTicketViewerFrontEnd/ticket_viewer_client_app/
 npm install
