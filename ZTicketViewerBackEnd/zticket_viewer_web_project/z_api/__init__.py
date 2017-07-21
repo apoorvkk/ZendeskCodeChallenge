@@ -9,3 +9,5 @@ from .resources import (
     ZUser,
     ZAttachment
 )
+
+from .request_manager import ZCoreRequestManager

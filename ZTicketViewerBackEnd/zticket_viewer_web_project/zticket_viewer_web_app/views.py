@@ -21,7 +21,7 @@ def show_ticket(request, id):
     """
 
     try:
-        ticket = z_api.ZTicket.get_ticket(id=id)
+        ticket = z_api.ZTicket.show_ticket(id=id)
     except requests.exceptions.HTTPError as http_err:
         message = ''
         content_type = http_err.response.headers.get('content-type', '')
@@ -33,6 +33,9 @@ def show_ticket(request, id):
         elif "text/plain" in content_type:
             message = "(STATUS {code}): ".format(code=http_err.response.status_code)
             message += http_err.response.content
+
+        else:
+            message = "Unknown error occurred."
 
         raise exceptions.APIException(message)
 
@@ -111,6 +114,9 @@ def list_comments(request, ticket_id):
         elif "text/plain" in content_type:
             message = "(STATUS {code}): ".format(code=http_err.response.status_code)
             message += http_err.response.content
+
+        else:
+            message = "Unknown error occurred."
 
         raise exceptions.APIException(message)
 
