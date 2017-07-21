@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, OnChanges } from '@angular/core';
+import { Component, Input, ElementRef, OnChanges, OnInit } from '@angular/core';
 
 /*
 Used to cut down on long texts into manageable length and attaching "Read more" links.
@@ -11,7 +11,8 @@ Used to cut down on long texts into manageable length and attaching "Read more" 
     <a *ngIf="!hideToggle" style="color:#22a8d8" (click)="toggleView()">Read {{isCollapsed? 'more':'less'}}</a>
   `
 })
-export class ReadMoreComponent implements OnChanges {
+export class ReadMoreComponent implements OnChanges, OnInit {
+
   @Input() text: string;
   @Input() maxLength = 100;
   currentText: string;
@@ -24,6 +25,7 @@ export class ReadMoreComponent implements OnChanges {
   toggleView() {
     this.isCollapsed = !this.isCollapsed;
     this.determineView();
+    this.currentText = this.currentText.replace(/(?:\r\n|\r|\n)/g, '<br />');
   }
 
   determineView() {
@@ -44,7 +46,10 @@ export class ReadMoreComponent implements OnChanges {
     } else {
       this.currentText = this.text;
     }
+  }
 
+  ngOnInit(): void {
+    this.currentText = this.currentText.replace(/(?:\r\n|\r|\n)/g, '<br />');
   }
 
   ngOnChanges() {
