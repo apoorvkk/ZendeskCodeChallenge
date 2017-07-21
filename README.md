@@ -13,7 +13,7 @@ Requirements:
 - `angular-cli` - `npm install -g @angular/cli`
 
 
-**STEP ONE - Setting Up Virtual Environment**
+### STEP ONE - Setting Up Virtual Environment
 
 Open up your terminal and go into an empty directory of choice. Run the command below to create a virtual environment:
 ```
@@ -30,14 +30,14 @@ The virtual environment has now been activated and all dependencies will be inst
 
 **Note**: You exit the virtual environment by using the `deactivate` command.
 
-**STEP TWO - Import Project Source Code**
+### STEP TWO - Import Project Source Code
 
 Now that we have the virtual environment activated, run the command below to load the project:
 ```
 git clone https://github.com/akan57/ZendeskCodeChallenge.git
 ```
 
-**STEP THREE - Install Backend Packages**
+### STEP THREE - Install Backend Packages
 Run the command below to locate the backend dependencies file `requirements.txt`:
 ```
 cd ZendeskCodeChallenge/ZTicketViewerBackEnd
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 The backend has all the packages it needs in order to run now.
 
-**STEP FOUR - Run Backend Server**
+### STEP FOUR - Run Backend Server
 
 Now that we have the Python packages installed, run the two commands below to actually run the backend server:
 ```
@@ -59,7 +59,7 @@ python manage.py runserver localhost:8080
 ```
 **Note**: Please have port 8080 free to use otherwise you will need to use a different port and then manually change the request endpoints in the Angular 4 frontend side.
 
-**STEP FIVE - Install Frontend Packages**
+### STEP FIVE - Install Frontend Packages
 
 Leaving the first terminal running the backend server as it is, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. /your_computer_directory/ZendeskEnv/) Run the two commands below to install the frontend dependencies:
 ```
@@ -68,7 +68,7 @@ npm install
 ```
 This will install all the dependencies needed in the frontend by inspecting the `package.json` file.
 
-**STEP SIX - Run the Frontend Server**
+### STEP SIX - Run the Frontend Server
 
 Run the command below to run the local frontend server which serves the Angular 4 application:
 ```
@@ -89,7 +89,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 ```
 
-**(MISCELLANEOUS) STEP SEVEN - Running Unit Tests**
+### (MISCELLANEOUS) STEP SEVEN - Running Unit Tests
 
 In order to run the unit tests, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. /your_computer_directory/ZendeskEnv/). Run the commands below to run all unit tests:
 ```
