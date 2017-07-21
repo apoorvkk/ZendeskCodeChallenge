@@ -21,10 +21,10 @@ Responsibilities
 -- Currently allows listing of tickets and showing of specific tickets.
 Note: future operations such as creation
 of ticket can be added here.
-Note: We sideload users and organizations when getting tickets. This
-means that we can create User and Organization objects associated to 
+Note: We sideload users when getting tickets. This
+means that we can create User objects associated to 
 a ticket with just one request. This replicates how Zendesk supports
-sideloading. However if we need to support directly retrieving
+sideloading. However if we need to support direct retrieval of
 users from Zendesk, we would create another method in the ZUser
 class that would do this.
 
@@ -36,23 +36,18 @@ class that would do this.
     <coordinates>
       <x>4</x>
       <y>444</y>
-      <w>380</w>
-      <h>220</h>
+      <w>308</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>Note..
 bg=blue
-The design here only fufils
+The design here only supports
 the necessary features of the 
 coding challenge but has been
 designed to be easily extended
 in future for extra and more complex
 features such as updating tickets or
 making comments private.
-There are a number of classes that
-have only static methods at the moment.
-This is because the coding challenge 
-requires only to retrieve data from the 
-api and not do any complex updating/creating.
 fontsize=40</panel_attributes>
     <additional_attributes/>
   </element>
@@ -79,8 +74,6 @@ Responsibilities
 -- Focused only on communicating directly with
 Zendesk API and the specific details of a request
 (eg. authentication, http headers etc.).
--- Raises exceptions about API level errors and 
-any other low level errors.
 
 </panel_attributes>
     <additional_attributes/>
@@ -105,7 +98,7 @@ Responsibilities
 Note: We sideload users when getting comments. This
 means that we can create User objects associated to 
 a comment with just one request. This replicates how Zendesk supports
-sideloading. However if we need to support directly retrieving
+sideloading. However if we need to support direct retrieval of
 users from Zendesk, we would create another method in the ZUser
 class that would do this.
 </panel_attributes>
@@ -166,9 +159,9 @@ Common resource attributes found in Zendesk API (omitted due to large size)
 Responsibilities
 -- Focuses on wrapping a resource in Zendesk
 through abstraction.
--- Closely coupled with the Zendesk API design.
+-- Closely coupled with the Zendesk API.
 -- Allows support for serializing objects here to json data and also 
-deserializing Zendesk api data.
+deserializing Zendesk api data into wrapper objects.
 
 
 
@@ -270,8 +263,8 @@ Attachment attributes found in Zendesk API (omitted due to large size)
 --
 --
 Responsibilities
--- Holds details about a Zendesk organization.
--- In future, it can support operations on a Zendesk organization.
+-- Holds details about a Zendesk attachment.
+-- In future, it can support operations on a Zendesk attachment.
 
 
 
