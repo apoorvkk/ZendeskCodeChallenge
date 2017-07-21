@@ -15,7 +15,7 @@
           <br>
           <span *ngIf="comment.attachments">
                   <li *ngFor="let attachment of comment.attachments" style="list-style: none;" class="pull-left">
-                     <a href="{{attachment.content_url ? attachment.content_url : ''}}">{{attachment.content_url ? attachment.content_url : ''}}</a>
+                     <a target="_blank" href="{{attachment.content_url ? attachment.content_url : ''}}">{{attachment.content_url ? attachment.content_url : ''}}</a>
                   </li>
                   <br>
                </span>
