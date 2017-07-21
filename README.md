@@ -8,10 +8,6 @@ Requirements:
 - `git`
 - `python3+`, `pip`
 - `virtualenv` - `pip install virtualenv`
-- `node` - [install here](https://nodejs.org/en/). (**NOTE**: must be `Node 6.9` or above)
-- `npm` - (should be installed with `node`)
-- `angular-cli` - `npm install -g @angular/cli`
-
 
 ### STEP ONE - Setting Up Virtual Environment
 
@@ -59,20 +55,17 @@ python manage.py runserver localhost:8080
 ```
 **Note**: Please have port 8080 free to use otherwise you will need to use a different port and then manually change the request endpoints in the Angular 4 frontend side.
 
-### STEP FIVE - Install Frontend Packages
+### STEP FIVE - Run the Frontend Server
 
-Leaving the first terminal running the backend server as it is, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. `/your_computer_directory/ZendeskEnv/`). Run the two commands below to install the frontend dependencies:
+Open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. `/your_computer_directory/ZendeskEnv/`). Activate the virtual environment again with this command:
 ```
-cd ZendeskCodeChallenge/ZTicketViewerFrontEnd/ticket_viewer_client_app/
-npm install
+source bin/activate
 ```
-This will install all the dependencies needed in the frontend by inspecting the `package.json` file.
 
-### STEP SIX - Run the Frontend Server
-
-Run the command below to run the local frontend server which serves the Angular 4 application:
+Run the commands below to run the local frontend server which serves the Angular 4 application:
 ```
-ng serve --port 4200
+cd ZendeskCodeChallenge/ZTicketViewerFrontEnd/ticket_viewer_client_app/compiled_client_app/
+python -m http.server 4200
 ```
 **Note:** Please have the port 4200 free otherwise you will need to change the port and then change the CORS setting inside `/ZendeskEnv/ZendeskCodeChallenge/ZZTicketViewerBackEnd/
 zticket_viewer_web_project/zticket_viewer_web_project/
@@ -88,8 +81,6 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:<YOUR NEW PORT>'
 )
 ```
-
-**Note:** You must have `angular-cli` installed to run the above command.
 
 Now you can go on http://localhost:4200 to access the website.
 

@@ -7,7 +7,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "compiled_client_app",
       "assets": ["assets"],
       "index": "index.html",
       "main": "main.ts",
