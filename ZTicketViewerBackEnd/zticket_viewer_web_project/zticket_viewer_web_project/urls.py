@@ -6,7 +6,7 @@ from zticket_viewer_web_app import views
 
 
 urlpatterns = [
-    url(r'^api/v1/', include(api_urls)),
+    url(r'^api/v1/', include(api_urls), name='api'),
     url(r'.*', views.not_found, name='not-found')
 ]
 

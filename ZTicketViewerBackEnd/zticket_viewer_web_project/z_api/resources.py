@@ -122,7 +122,7 @@ class ZTicket(ZResource):
             setattr(self, key, value)
 
     @classmethod
-    def get_ticket(cls, id=None):
+    def show_ticket(cls, id=None):
         """
         This will show the details of a Zendesk ticket (eg. subject, description, requestor etc.) and instantiate
         an object of this class with the given ticket data.
