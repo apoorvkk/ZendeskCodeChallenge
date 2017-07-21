@@ -89,6 +89,8 @@ CORS_ORIGIN_WHITELIST = (
 )
 ```
 
+**Note:** You must have `angular-cli` installed to run the above command.
+
 Now you can go on http://localhost:4200 to access the website.
 
 ### (MISCELLANEOUS) STEP SEVEN - Running Unit Tests
