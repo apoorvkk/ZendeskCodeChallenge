@@ -15,7 +15,7 @@ bulk and specific ticket details.
 ## Architectural Design
 I created a backend REST API that communicates directly with the Zendesk API. From here, I created a web client application using Angular 4 that directly communicates with my REST api. The main advantage of this design is that in future, we can incorporate many different client applications in different environments (eg. GUI applications). The REST API supports JSON data interchange format which is very ideal as this format is well documented, human readable and very popular amongst millions of developers.
 
-![alt text](images/architectural_design.png)
+![alt text](ZTicketViewerBackEnd/design/architectural_design.png)
 
 ### Stack and Tools used
 *Backend:*
