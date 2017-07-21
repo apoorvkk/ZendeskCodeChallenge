@@ -94,10 +94,8 @@ python manage.py test
 ```
 
 The test code are located in these two locations:
-- `ZendeskEnv/ZendeskCodeChallenge/ZTicketViewerBackEnd/
-zticket_viewer_web_project/z_api/tests/`
-- `ZendeskEnv/ZendeskCodeChallenge/ZTicketViewerBackEnd/
-zticket_viewer_web_project/zticket_viewer_web_app/tests/`
+- `ZendeskEnv/ZendeskCodeChallenge/ZTicketViewerBackEnd/zticket_viewer_web_project/z_api/tests/`
+- `ZendeskEnv/ZendeskCodeChallenge/ZTicketViewerBackEnd/zticket_viewer_web_project/zticket_viewer_web_app/tests/`
 
 
 ## Summary
