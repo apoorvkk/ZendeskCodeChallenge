@@ -28,7 +28,7 @@ source bin/activate
 
 The virtual environment has now been activated and all dependencies will be installed inside here.
 
-**Note**: You exit the virtual environment by using the `deactivate` command.
+**Note**: You can exit the virtual environment by using the `deactivate` command.
 
 ### STEP TWO - Import Project Source Code
 
@@ -61,7 +61,7 @@ python manage.py runserver localhost:8080
 
 ### STEP FIVE - Install Frontend Packages
 
-Leaving the first terminal running the backend server as it is, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. /your_computer_directory/ZendeskEnv/) Run the two commands below to install the frontend dependencies:
+Leaving the first terminal running the backend server as it is, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. `/your_computer_directory/ZendeskEnv/`) Run the two commands below to install the frontend dependencies:
 ```
 cd ZendeskCodeChallenge/ZTicketViewerFrontEnd/ticket_viewer_client_app/
 npm install
@@ -89,9 +89,11 @@ CORS_ORIGIN_WHITELIST = (
 )
 ```
 
+Now you can go on http://localhost:4200 to access the website.
+
 ### (MISCELLANEOUS) STEP SEVEN - Running Unit Tests
 
-In order to run the unit tests, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. /your_computer_directory/ZendeskEnv/). Run the commands below to run all unit tests:
+In order to run the unit tests, open a new terminal and locate your `ZendeskEnv` directory. Stay inside this directory (eg. `/your_computer_directory/ZendeskEnv/`). Run the commands below to run all unit tests:
 ```
 source bin/activate
 cd ZendeskCodeChallenge/ZTicketViewerBackEnd/zticket_viewer_web_project/
@@ -109,7 +111,11 @@ zticket_viewer_web_project/zticket_viewer_web_app/tests/`
 This coding challenge required us to create a program that allows employees of a business (particularly customer support employees) to view their customer enquiries and needs via Zendesk tickets. This meant that the program had to communicate with the Zendesk api in order to display
 bulk and specific ticket details.
 
-![alt text](images/home.png)
+![alt text](images/home.png)  
+
+![alt text](images/comment_section.png)
+
+![alt text](images/ticket_detail.png)
 
 ## Architectural Design
 I created a backend REST API that communicates directly with the Zendesk API. From here, I created a web client application using Angular 4 that directly communicates with my REST api. The main advantage of this design is that in future, we can incorporate many different client applications in different environments (eg. GUI applications). The REST API supports JSON data interchange format which is very ideal as this format is well documented, human readable and very popular amongst millions of developers.
