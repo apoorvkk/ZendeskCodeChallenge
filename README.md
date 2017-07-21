@@ -1,8 +1,10 @@
 # Zendesk Internship Coding Challenge 2017
 
 ## Installation and Usage
+**Note**: This installation works best on Mac/Linux environments.
 
-Requirements: <br>
+Requirements:
+
 - `git`
 - `python3+`, `pip`
 - `virtualenv` - `pip install virtualenv`
