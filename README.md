@@ -101,7 +101,7 @@ zticket_viewer_web_project/zticket_viewer_web_app/tests/`
 
 
 ## Summary
-This coding challenge required us to create a program that allows employees of a business (particularly customer support employees) to view their customer enquiries and needs via Zendesk tickets. This meant that the program had to communicate with the Zendesk api in order to display
+This coding challenge required us to create a program that allows employees of a business (particularly customer support employees) to view their customer enquiries and needs via Zendesk tickets. This meant that the program had to communicate with the Zendesk API in order to display
 bulk and specific ticket details.
 
 ![alt text](images/home.png)  
