@@ -3,7 +3,7 @@
 ## Installation and Usage
 **Note**: This installation works best on Mac/Linux environments.
 
-Requirements:
+All Requirements:
 
 - `git`
 - `python3+`, `pip`
